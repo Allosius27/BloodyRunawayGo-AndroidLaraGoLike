@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ModuleBehaviour : MonoBehaviour
 {
     [Header("Anchors")]
     [SerializeField] private bool _topAnchor = true;
-    [SerializeField] private bool _forwardAnchor = true;
-    [SerializeField] private bool _rightAnchor = true;
-    [SerializeField] private GameObject[] _anchorsSprites = new GameObject[3];
+    [SerializeField] private GameObject _anchorSprite = null;
 
     public ModuleBehaviour[] _neighbors = new ModuleBehaviour[6];
 
     private float _meshSize = 0f;
 
-    private Vector3?[] _anchors = new Vector3?[3];
+    private Vector3? _anchorPos = null;
 
     private void Awake()
     {
@@ -22,13 +21,9 @@ public class ModuleBehaviour : MonoBehaviour
 
         Vector3 pos = transform.position;
 
-        if (_topAnchor) _anchors[0] = (pos + new Vector3(0f, _meshSize, 0f));
-        if (_forwardAnchor) _anchors[1] = (pos + new Vector3(-_meshSize * 0.5f, _meshSize * 0.5f, 0f));
-        if (_rightAnchor) _anchors[2] = (pos + new Vector3(0f, _meshSize * 0.5f, -_meshSize * 0.5f));
+        if (_topAnchor) _anchorPos = (pos + new Vector3(0f, _meshSize, 0f));
 
-        _anchorsSprites[0].SetActive(_topAnchor);
-        _anchorsSprites[1].SetActive(_forwardAnchor);
-        _anchorsSprites[2].SetActive(_rightAnchor);
+        _anchorSprite.SetActive(_topAnchor);
     }
 
     [ContextMenu("CheckNeigbors")]
@@ -69,20 +64,16 @@ public class ModuleBehaviour : MonoBehaviour
         return _neighbors;
     }
 
-    public Vector3?[] GetAnchorsPos()
+    public Vector3? GetAnchorPos()
     {
-        return _anchors;
+        return _anchorPos;
     }
 
     private void OnDrawGizmosSelected()
     {
-        foreach (Vector3? pos in _anchors)
-        {
-            if(pos != null)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(pos.Value, 0.5f);
-            }
-        }
+        if (!_topAnchor) return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + _meshSize, transform.position.z), 0.5f);
     }
 }

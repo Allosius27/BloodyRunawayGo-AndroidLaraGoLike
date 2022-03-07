@@ -111,11 +111,11 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (neighbors[value] != null)
             {
-                Vector3?[] anchors = neighbors[value].GetAnchorsPos();
+                Vector3? anchorPos = neighbors[value].GetAnchorPos();
 
-                if (anchors[0] != null)
+                if (anchorPos != null)
                 {
-                    _possibleTargets[value] = anchors[0];
+                    _possibleTargets[value] = anchorPos;
                 }
                 else
                 {
@@ -128,8 +128,6 @@ public class PlayerMovementController : MonoBehaviour
             }
         }        
     }
-
-
 
     private void CheckForCurrModule()
     {
