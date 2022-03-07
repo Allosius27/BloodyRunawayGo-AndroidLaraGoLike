@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<languages>
+
+  <language>
+    <Name>Français</Name>
+	<langue>Langue</langue>
+    <bonjour>Bonjour</bonjour>
+    <aurevoir>Au revoir</aurevoir>
+    <options>Options</options>
+    <jeu>Jeu</jeu>
+    <audio>Audio</audio>
+    <video>Vidéo</video>
+    <pleinecran>Plein ecran</pleinecran>
+    <qualitegraphique>Qualité graphique</qualitegraphique>
+    <resolution>Résolution</resolution>
+    <volume>Volume</volume>
+    <volumemusiques>Volume Musiques</volumemusiques>
+    <volumebruitages>Volume Bruitages</volumebruitages>
+    <volumeambiances>Volume Ambiances</volumeambiances>
+    <commandes>Commandes</commandes>
+    <nouvellepartie>Nouvelle partie</nouvellepartie>
+    <continuer>Continuer</continuer>
+    <quitter>Quitter</quitter>
+    <retour>Retour</retour>
+	<pause>Pause</pause>
+
+  </language>
+  
+  <language>
+    <Name>English</Name>
+	<langue>Language</langue>
+    <bonjour>Hello</bonjour>
+    <aurevoir>Bye</aurevoir>
+    <options>Settings</options>
+	<jeu>Game</jeu>
+    <audio>Audio</audio>
+    <video>Video</video>
+    <pleinecran>Full screen</pleinecran>
+    <qualitegraphique>Graphics quality</qualitegraphique>
+	<resolution>Resolution</resolution>
+    <volume>Volume</volume>
+	<volumemusiques>Musics Volume</volumemusiques>
+	<volumebruitages>Sounds Effects Volume</volumebruitages>
+	<volumeambiances>Ambiances Volume</volumeambiances>
+    <commandes>Controls</commandes>
+    <nouvellepartie>New game</nouvellepartie>
+    <continuer>Continue</continuer>
+    <quitter>Exit</quitter>
+    <retour>Return</retour>
+    <pause>Pause</pause>
+  </language>
+  
+  <language>
+    <Name>Español</Name>
+	<langue>Lengua</langue>
+    <bonjour>Hola</bonjour>
+    <aurevoir>Adiós</aurevoir>
+    <options>Opciones</options>
+	<jeu>Juego</jeu>
+    <audio>Audio</audio>
+    <video>Vidéo</video>
+    <pleinecran>Pantalla completa</pleinecran>
+    <qualitegraphique>Calidad gráfica</qualitegraphique>
+	<resolution>Resolución</resolution>
+    <volume>Volumen</volume>
+	<volumemusiques>Volumen Músicas</volumemusiques>
+	<volumebruitages>Volumen Efectos De Sonido</volumebruitages>
+	<volumeambiances>Volumen Ambientes</volumeambiances>
+    <commandes>Controles</commandes>
+    <nouvellepartie>Nueva parte</nouvellepartie>
+    <continuer>Continuar</continuer>
+    <quitter>Salir</quitter>
+    <retour>Retorno</retour>
+    <pause>Pausa</pause>
+  </language>
+
+</languages>
