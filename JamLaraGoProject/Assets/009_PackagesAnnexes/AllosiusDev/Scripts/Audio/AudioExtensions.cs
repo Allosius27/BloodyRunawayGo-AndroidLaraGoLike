@@ -10,6 +10,7 @@ namespace AllosiusDev {
         public static AudioSource SetSoundToSource(this AudioSource source, Sound sound) {
             source.clip = sound.Clip;
             source.loop = sound.Parameters.Loop;
+            source.priority = sound.Parameters.Priority;
             source.pitch = sound.Parameters.Pitch;
 
             if (sound.Parameters.SpacialBlend != 0)

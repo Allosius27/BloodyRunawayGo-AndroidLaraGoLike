@@ -12,9 +12,9 @@ namespace AllosiusDev {
         [SerializeField] private AudioClip clip;
         [SerializeField] private SoundParameters parameters;
 
-        public Sound(AudioClip clip = null, float volume = 1, float volume3d = 1, float pitch = 1, bool loop = false) {
+        public Sound(AudioClip clip = null, float volume = 1, float volume3d = 1, float pitch = 1, bool loop = false, int priority = 128) {
             this.clip = clip;
-            parameters = new SoundParameters(volume, volume3d, pitch, loop);
+            parameters = new SoundParameters(volume, volume3d, pitch, loop, priority);
         }
         public Sound(AudioClip clip, SoundParameters parameters) {
             this.clip = clip;

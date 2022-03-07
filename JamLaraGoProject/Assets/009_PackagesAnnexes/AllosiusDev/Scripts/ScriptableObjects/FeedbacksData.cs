@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,7 +84,7 @@ namespace AllosiusDev
             {
                 if (item.Initialized == false)
                 {
-                    Debug.Log("OnBeforeSerialize");
+                    //Debug.Log("OnBeforeSerialize");
 
                     item.IsFeedbackWait = true;
                     item.Initialized = true;
@@ -97,7 +96,7 @@ namespace AllosiusDev
             {
                 if (item.Initialized == false)
                 {
-                    Debug.Log("OnBeforeSerialize");
+                    //Debug.Log("OnBeforeSerialize");
 
                     item.IsFeedbackPlaySound = true;
                     item.Initialized = true;
@@ -109,7 +108,7 @@ namespace AllosiusDev
             {
                 if (item.Initialized == false)
                 {
-                    Debug.Log("OnBeforeSerialize");
+                    //Debug.Log("OnBeforeSerialize");
 
                     item.IsFeedbackInstantiateObject = true;
                     item.Initialized = true;
@@ -121,7 +120,7 @@ namespace AllosiusDev
             {
                 if (item.Initialized == false)
                 {
-                    Debug.Log("OnBeforeSerialize");
+                    //Debug.Log("OnBeforeSerialize");
 
                     item.IsFeedbackChangeColorSprite = true;
                     item.Initialized = true;
@@ -133,7 +132,7 @@ namespace AllosiusDev
             {
                 if (item.Initialized == false)
                 {
-                    Debug.Log("OnBeforeSerialize");
+                    //Debug.Log("OnBeforeSerialize");
 
                     item.IsFeedbackReturnInitialColorSprite = true;
                     item.Initialized = true;
@@ -145,7 +144,7 @@ namespace AllosiusDev
             return null;
         }
 
-        public IEnumerator Execute(GameObject _owner)
+        public IEnumerator CoroutineExecute(GameObject _owner)
         {
             Debug.Log("Execute");
             foreach (var item in feedbacks)
@@ -155,9 +154,7 @@ namespace AllosiusDev
             }
         }
 
-
-
-        public void SetTarget(Transform _target)
+        public void SetTarget(Vector3 _target)
         {
             Debug.Log("Set Target");
             foreach (var item in feedbacks)
@@ -247,4 +244,3 @@ namespace AllosiusDev
         public FeedbackReturnInitialColorSprite feedbackReturnInitialColorSprite;
     }
 }
-#endif

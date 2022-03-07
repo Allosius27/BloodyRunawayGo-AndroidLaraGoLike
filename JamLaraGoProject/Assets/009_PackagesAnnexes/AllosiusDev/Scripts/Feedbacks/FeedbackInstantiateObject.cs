@@ -13,9 +13,9 @@ namespace AllosiusDev
 
         public override IEnumerator Execute(GameObject _owner)
         {
-            if(target != null)
+            if(hasTarget)
             {
-                GameObject _feedbackInstantiate = GameObject.Instantiate(objectToInstantiate, target.position + objectPositionOffset, Quaternion.identity);
+                GameObject _feedbackInstantiate = GameObject.Instantiate(objectToInstantiate, target + objectPositionOffset, Quaternion.identity);
             }
             else
             {

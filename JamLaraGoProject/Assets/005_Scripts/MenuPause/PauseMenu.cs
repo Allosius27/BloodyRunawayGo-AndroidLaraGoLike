@@ -7,7 +7,7 @@ using UnityEditor;
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
-    public static bool canPause;
+    public static bool canPause = true;
     public GameObject settingsMenu;
     public GameObject pauseMenuUI;
 

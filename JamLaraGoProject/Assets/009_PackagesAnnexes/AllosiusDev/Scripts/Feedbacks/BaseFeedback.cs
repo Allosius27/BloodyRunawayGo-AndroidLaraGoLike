@@ -1,6 +1,3 @@
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,14 +12,16 @@ namespace AllosiusDev
         [Tooltip("Determines whether feedback is active or not")]
         public bool IsActive = true;
 
-        public Transform target { get; protected set; }
+        public Vector3 target { get; protected set; }
+        public bool hasTarget { get; protected set; }
 
         public SpriteRenderer spriteRenderer { get; protected set; }
         public Color spriteRendererBaseColor { get; protected set; }
 
-        public virtual void SetTarget(Transform _target)
+        public virtual void SetTarget(Vector3 _target)
         {
             target = _target;
+            hasTarget = true;
         }
 
         public virtual void SetSpriteRenderer(SpriteRenderer _targetRenderer)

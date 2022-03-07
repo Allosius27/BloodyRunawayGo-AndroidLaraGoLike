@@ -49,6 +49,8 @@ public class MainMenu : MonoBehaviour
 
         Cursor.SetCursor(null, hotSpot, cursorMode);
 
+        PauseMenu.canPause = false;
+
         /*if (PlayerPrefs.HasKey("Current_Scene"))
         {
             continueActive = true;
