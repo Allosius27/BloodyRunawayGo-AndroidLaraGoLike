@@ -34,6 +34,11 @@ public class MainMenu : MonoBehaviour
     [Space]
 
     public AllosiusDev.AudioData mainMenuMusic;
+
+    [Space]
+
+    [SerializeField] private SelectLevelPanel selectLevelPanel;
+
     #endregion
 
 
@@ -79,12 +84,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(loadGameScene);
     }*/
 
-    public void NewGame(float _timeToWait)
+    public void NewGame()
     {
-        PauseMenu.canPause = true;
-        //StartCoroutine(SceneLoader.Instance.LoadAsynchronously(Scenes.Level));
-        SceneLoader.Instance.ActiveLoadingScreen(startLevelSceneData, _timeToWait);
-
+        selectLevelPanel.gameObject.SetActive(true);
     }
    
     public void Options()

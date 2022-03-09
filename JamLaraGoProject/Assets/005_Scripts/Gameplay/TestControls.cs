@@ -33,19 +33,60 @@ public class TestControls : MonoBehaviour
             horizontalMove = 0f;
         }*/
 
-        horizontalMove = joystick.Horizontal * runSpeed;
-        Debug.Log(horizontalMove);
-
-        verticalMove = joystick.Vertical * runSpeed;
-        Debug.Log(verticalMove);
-
         for (int i = 0; i < Input.touchCount; i++)
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
             Debug.DrawLine(Vector3.zero, touchPosition, Color.red);
         }
 
-        transform.position = new Vector3(transform.position.x + horizontalMove,
-            transform.position.y + verticalMove, transform.position.z);
+        if(joystick.canMove == false)
+        {
+            horizontalMove = joystick.Horizontal * runSpeed;
+            verticalMove = joystick.Vertical * runSpeed;
+        }
+        
+        if (joystick.canMove)
+        {
+            joystick.canMove = false;
+            
+
+            float _x = 0;
+            float _z = 0;
+           
+
+            if(horizontalMove > 0)
+            {
+                _x = 1;
+            }
+            else if (horizontalMove == 0)
+            {
+                _x = 0;
+            }
+            else if (horizontalMove < 0)
+            {
+                _x = -1;
+            }
+
+            if (verticalMove > 0)
+            {
+                _z = 1;
+            }
+            else if (verticalMove == 0)
+            {
+                _z = 0;
+            }
+            else if (verticalMove < 0)
+            {
+                _z = -1;
+            }
+
+            Debug.Log(_x);
+            Debug.Log(_z);
+            transform.position = new Vector3(transform.position.x + _x,
+            transform.position.y, transform.position.z + _z);
+        }
+
+        /*transform.position = new Vector3(transform.position.x + horizontalMove,
+            transform.position.y + verticalMove, transform.position.z);*/
     }
 }
