@@ -5,15 +5,26 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ModuleBehaviour : MonoBehaviour
 {
+    #region Fields
+
+    private float _meshSize = 0f;
+
+    private Vector3? _anchorPos = null;
+
+    #endregion
+
+    #region UnityInspector
+
     [Header("Anchors")]
     [SerializeField] private bool _topAnchor = true;
     [SerializeField] private GameObject _anchorSprite = null;
 
     public ModuleBehaviour[] _neighbors = new ModuleBehaviour[6];
 
-    private float _meshSize = 0f;
+    #endregion
 
-    private Vector3? _anchorPos = null;
+
+    #region Behavior
 
     private void Awake()
     {
@@ -24,6 +35,11 @@ public class ModuleBehaviour : MonoBehaviour
         if (_topAnchor) _anchorPos = (pos + new Vector3(0f, _meshSize, 0f));
 
         _anchorSprite.SetActive(_topAnchor);
+    }
+
+    private void Start()
+    {
+        RegisterNeighbors();
     }
 
     [ContextMenu("CheckNeigbors")]
@@ -69,6 +85,10 @@ public class ModuleBehaviour : MonoBehaviour
         return _anchorPos;
     }
 
+    #endregion
+
+    #region Gizmos
+
     private void OnDrawGizmosSelected()
     {
         if (!_topAnchor) return;
@@ -76,4 +96,6 @@ public class ModuleBehaviour : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + _meshSize, transform.position.z), 0.5f);
     }
+
+    #endregion
 }

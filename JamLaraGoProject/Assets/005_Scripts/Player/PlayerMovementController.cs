@@ -4,50 +4,179 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private float _movementSpeed = 5f;
+
+    #region Fields
 
     private ModuleBehaviour _currModule = null;
 
     private MovementState _movementState = MovementState.walking;
+    private MovementDirection _movementDirection = MovementDirection.NONE;
+
+    private Vector3 _beganPosition = Vector3.zero;
+    private Vector3 _endedPosition = Vector3.zero;
+
+    private Vector3? _targetPos = null;
+
+    #endregion
+
+    #region Properties
 
     public Vector3?[] _possibleTargets = new Vector3?[4];
 
-    private Vector3? _targetPos = null;
+    #endregion
+
+    #region UnityInspector
+
+    [SerializeField] private float _movementSpeed = 5f;
+
+    #endregion
+
+    #region Behaviour
 
     private void Start()
     {
         CheckForCurrModule();
+
+
     }
 
     private void Update()
     {
         UpdateInput();
         UpdateMovements();
+
+        Test();
+    }
+
+    public void Test()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+            }
+            if (touch.phase == TouchPhase.Moved)
+            {
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
+
+                for (int i = 0; i < neighbors.Length; i++)
+                {
+                    if (neighbors[i] != null)
+                    {
+                        Vector3 direction = neighbors[i].transform.position - transform.position;
+                        //Debug.Log(direction);
+                        float distance = Vector3.Distance(neighbors[i].transform.position, transform.position);
+                        //Debug.Log(distance);
+                    }
+                }
+            }
+        }
+
     }
 
     private void UpdateInput()
     {
         if (_targetPos != null) return;
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        GetKeyboardInputs();
+
+        GetMobileInputs();
+
+        if (_movementDirection == MovementDirection.UP)
         {
             SetMovement(0);
+        }
+        else if (_movementDirection == MovementDirection.DOWN)
+        {
+            SetMovement(1);
+        }
+        else if (_movementDirection == MovementDirection.RIGHT)
+        {
+            SetMovement(2);
+        }
+        else if (_movementDirection == MovementDirection.LEFT)
+        {
+            SetMovement(3);
+        }
+
+    }
+
+    private void GetKeyboardInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            _movementDirection = MovementDirection.UP;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            _movementDirection = MovementDirection.DOWN;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            _movementDirection = MovementDirection.RIGHT;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            SetMovement(3);
+            _movementDirection = MovementDirection.LEFT;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.S))
+    private void GetMobileInputs()
+    {
+        if (Input.touchCount > 0)
         {
-            SetMovement(1);
-        }
+            Touch touch = Input.GetTouch(0);
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            SetMovement(2);
+            if (touch.phase == TouchPhase.Began)
+            {
+                //Debug.Log("Began " + touch.position);
+                _beganPosition = touch.position;
+            }
+            if (touch.phase == TouchPhase.Moved)
+            {
+                //Debug.Log("Moved " + touch.position);
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                //Debug.Log("Ended " + touch.position);
+                _endedPosition = touch.position;
+
+                Vector3 direction = _endedPosition - _beganPosition;
+                Debug.Log("direction : " + direction);
+
+                if (direction.x > 0 && direction.y > 0)
+                {
+                    Debug.Log("RIGHT");
+                    _movementDirection = MovementDirection.RIGHT;
+                }
+
+                if (direction.x > 0 && direction.y < 0)
+                {
+                    Debug.Log("DOWN");
+                    _movementDirection = MovementDirection.DOWN;
+                }
+
+                if (direction.x < 0 && direction.y < 0)
+                {
+                    Debug.Log("LEFT");
+                    _movementDirection = MovementDirection.LEFT;
+                }
+
+                if (direction.x < 0 && direction.y > 0)
+                {
+                    Debug.Log("UP");
+                    _movementDirection = MovementDirection.UP;
+                }
+            }
         }
     }
 
@@ -57,12 +186,13 @@ public class PlayerMovementController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
 
-        if((_targetPos.Value - transform.position).sqrMagnitude < 0.01f) { OnMovementEnd(); }
+        if ((_targetPos.Value - transform.position).sqrMagnitude < 0.01f) { OnMovementEnd(); }
     }
 
     private void SetMovement(int value)
     {
-        if(_possibleTargets[value] != null)
+        Debug.Log("SetMovement");
+        if (_possibleTargets[value] != null)
         {
             SetTargetPos(_possibleTargets[value].Value);
         }
@@ -70,7 +200,9 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnMovementEnd()
     {
+        Debug.Log("OnMovementEnd");
         _targetPos = null;
+        _movementDirection = MovementDirection.NONE;
         CheckForCurrModule();
     }
 
@@ -90,7 +222,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_currModule == null) { Debug.LogWarning("NoCurrentModule"); return; }
 
-        if(_movementState == MovementState.walking)
+        if (_movementState == MovementState.walking)
         {
             ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
 
@@ -107,7 +239,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetPossibleTargetPos(int value, ModuleBehaviour[] neighbors)
     {
-        if(_movementState == MovementState.walking)
+        if (_movementState == MovementState.walking)
         {
             if (neighbors[value] != null)
             {
@@ -117,27 +249,32 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     _possibleTargets[value] = anchorPos;
                 }
-                else
+                /*else
                 {
                     SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
-                }
+                }*/
             }
             else
             {
                 _possibleTargets[value] = null;
             }
-        }        
+        }
     }
 
     private void CheckForCurrModule()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
         {
-            if(hit.collider.TryGetComponent<ModuleBehaviour>(out ModuleBehaviour module))
+            if (hit.collider.TryGetComponent<ModuleBehaviour>(out ModuleBehaviour module))
             {
                 SetCurrModule(module);
             }
         }
     }
 }
+
+#endregion
+
 public enum MovementState { walking, climbing }
+
+public enum MovementDirection { NONE, UP, DOWN, RIGHT, LEFT }
