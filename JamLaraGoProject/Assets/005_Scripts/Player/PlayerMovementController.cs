@@ -6,7 +6,7 @@ using DG.Tweening;
 public class PlayerMovementController : MonoBehaviour
 {
 
-    #region Fields
+    #region Fields  
 
     private ModuleBehaviour _currModule = null;
     
