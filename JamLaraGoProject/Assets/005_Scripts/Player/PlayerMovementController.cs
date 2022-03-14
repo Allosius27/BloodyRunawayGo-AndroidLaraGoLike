@@ -214,6 +214,8 @@ public class PlayerMovementController : MonoBehaviour
         _currModule = moduleBehaviour;
         Debug.Log("new module : " + _currModule.name);
 
+        _currModule.CheckCurrentPlayerModule(_currModule);
+
         SetPossibleTargetsPos();
     }
 

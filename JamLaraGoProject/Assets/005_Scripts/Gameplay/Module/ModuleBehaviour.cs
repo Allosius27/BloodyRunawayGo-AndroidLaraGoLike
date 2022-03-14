@@ -95,6 +95,19 @@ public class ModuleBehaviour : MonoBehaviour
         return _anchorPos;
     }
 
+    public void CheckCurrentPlayerModule(ModuleBehaviour playerModule)
+    {
+        if(playerModule != this)
+        {
+            return;
+        }
+
+        if(isLighting)
+        {
+            GameCore.Instance.GameOver();
+        }
+    }
+
     #endregion
 
     #region Gizmos
