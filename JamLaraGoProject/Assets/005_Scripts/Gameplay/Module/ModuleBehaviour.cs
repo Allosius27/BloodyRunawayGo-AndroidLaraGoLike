@@ -16,6 +16,9 @@ public class ModuleBehaviour : MonoBehaviour
     #region Properties
 
     public bool isLocked { get; set; }
+
+    public bool isLighting { get; set; }
+
     public int directionValueLocked { get; set; }
 
     #endregion
