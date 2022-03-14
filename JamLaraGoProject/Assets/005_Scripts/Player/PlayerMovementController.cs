@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector3? _targetPos = null;
 
+    private BatMovement _batMovement = null;
+
+    private int[] _batMovementsCosts = new int[4];
+    
     #endregion
 
     #region Properties
 
-    public enum MovementDirection { None, Up, Down, Right, Left }
+    private enum MovementDirection { None, Up, Down, Right, Left }
 
     private readonly Vector3?[] _possibleTargets = new Vector3?[4];
 
@@ -37,6 +42,11 @@ public class PlayerMovementController : MonoBehaviour
 
     #region Behaviour
 
+    private void Awake()
+    {
+        _batMovement = this.gameObject.GetComponent<BatMovement>();
+    }
+
     private void Start()
     {
         CheckForCurrModule();
@@ -51,25 +61,40 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_targetPos != null) return;
 
+        int currBatMovement = _batMovement.GetCurrBatMovement();
+        
         GetKeyboardInputs();
 
         GetMobileInputs();
 
         if (_movementDirection == MovementDirection.Up)
         {
-            SetMovement(0);
+            if (_batMovementsCosts[0] <= currBatMovement)
+            {
+                SetMovement(0);
+            }
+
         }
         else if (_movementDirection == MovementDirection.Down)
         {
-            SetMovement(1);
+            if (_batMovementsCosts[1] <= currBatMovement)
+            {
+                SetMovement(1);
+            }
         }
         else if (_movementDirection == MovementDirection.Right)
         {
-            SetMovement(2);
+            if (_batMovementsCosts[2] <= currBatMovement)
+            {
+                SetMovement(2);
+            }
         }
         else if (_movementDirection == MovementDirection.Left)
         {
-            SetMovement(3);
+            if (_batMovementsCosts[3] <= currBatMovement)
+            {
+                SetMovement(3);
+            }
         }
     }
 
@@ -168,6 +193,10 @@ public class PlayerMovementController : MonoBehaviour
     private void SetMovement(int value)
     {
         //Debug.Log("SetMovement");
+        
+        _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
+        _batMovementsCosts = new int[4];
+        
         if (_possibleTargets[value] != null)
         {
             SetTargetPos(_possibleTargets[value].Value);
@@ -228,6 +257,7 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
+                _batMovementsCosts[value]++;
                 SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
             }
         }

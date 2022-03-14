@@ -13,7 +13,7 @@ public class BatMovement : MonoBehaviour
 
     private void Awake()
     {
-        _batMovementsCountText.text = _currBatMovement.ToString("0");
+        _batMovementsCountText.text = _currBatMovement.ToString();
     }
 
     public int GetCurrBatMovement()
@@ -21,8 +21,9 @@ public class BatMovement : MonoBehaviour
         return _currBatMovement;
     }
     
-    private void ChangeBatMovementCount(int value)
+    public void ChangeBatMovementCount(int value)
     {
         _currBatMovement += value;
+        _batMovementsCountText.text = _currBatMovement.ToString();
     }
 }
