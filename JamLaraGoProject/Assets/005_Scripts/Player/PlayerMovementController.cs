@@ -8,22 +8,19 @@ public class PlayerMovementController : MonoBehaviour
     #region Fields
 
     private ModuleBehaviour _currModule = null;
-
-    private MovementState _movementState = MovementState.walking;
-    private MovementDirection _movementDirection = MovementDirection.NONE;
+    
+    private MovementDirection _movementDirection = MovementDirection.None;
 
     private Vector3 _beganPosition = Vector3.zero;
     private Vector3 _endedPosition = Vector3.zero;
 
     private Vector3? _targetPos = null;
 
-    private bool canMove = true;
-
     #endregion
 
     #region Properties
 
-    public Vector3?[] _possibleTargets = new Vector3?[4];
+    private readonly Vector3?[] _possibleTargets = new Vector3?[4];
 
     #endregion
 
@@ -38,8 +35,6 @@ public class PlayerMovementController : MonoBehaviour
     private void Start()
     {
         CheckForCurrModule();
-
-
     }
 
     private void Update()
@@ -55,46 +50,45 @@ public class PlayerMovementController : MonoBehaviour
 
         GetMobileInputs();
 
-        if (_movementDirection == MovementDirection.UP)
+        if (_movementDirection == MovementDirection.Up)
         {
             SetMovement(0);
         }
-        else if (_movementDirection == MovementDirection.DOWN)
+        else if (_movementDirection == MovementDirection.Down)
         {
             SetMovement(1);
         }
-        else if (_movementDirection == MovementDirection.RIGHT)
+        else if (_movementDirection == MovementDirection.Right)
         {
             SetMovement(2);
         }
-        else if (_movementDirection == MovementDirection.LEFT)
+        else if (_movementDirection == MovementDirection.Left)
         {
             SetMovement(3);
         }
-
     }
 
     private void GetKeyboardInputs()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _movementDirection = MovementDirection.UP;
+            _movementDirection = MovementDirection.Up;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            _movementDirection = MovementDirection.DOWN;
+            _movementDirection = MovementDirection.Down;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _movementDirection = MovementDirection.RIGHT;
+            _movementDirection = MovementDirection.Right;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            _movementDirection = MovementDirection.LEFT;
+            _movementDirection = MovementDirection.Left;
         }
     }
 
@@ -124,25 +118,25 @@ public class PlayerMovementController : MonoBehaviour
                 if (direction.x > 0 && direction.y > 0)
                 {
                     Debug.Log("RIGHT");
-                    _movementDirection = MovementDirection.RIGHT;
+                    _movementDirection = MovementDirection.Right;
                 }
 
                 if (direction.x > 0 && direction.y < 0)
                 {
                     Debug.Log("DOWN");
-                    _movementDirection = MovementDirection.DOWN;
+                    _movementDirection = MovementDirection.Down;
                 }
 
                 if (direction.x < 0 && direction.y < 0)
                 {
                     Debug.Log("LEFT");
-                    _movementDirection = MovementDirection.LEFT;
+                    _movementDirection = MovementDirection.Left;
                 }
 
                 if (direction.x < 0 && direction.y > 0)
                 {
                     Debug.Log("UP");
-                    _movementDirection = MovementDirection.UP;
+                    _movementDirection = MovementDirection.Up;
                 }
             }
         }
@@ -152,9 +146,18 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_targetPos == null) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
+        Vector3 direction = _targetPos.Value - transform.position;
+        float moveStep = _movementSpeed * Time.deltaTime;
 
-        if ((_targetPos.Value - transform.position).sqrMagnitude < 0.1f) { OnMovementEnd(); }
+        if(moveStep > direction.sqrMagnitude)
+        {
+            transform.position = _targetPos.Value;
+            OnMovementEnd();
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
+        }
     }
 
     private void SetMovement(int value)
@@ -170,11 +173,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         Debug.Log("OnMovementEnd");
         _targetPos = null;
-        _movementDirection = MovementDirection.NONE;
+        _movementDirection = MovementDirection.None;
         CheckForCurrModule();
     }
 
-    public void SetCurrModule(ModuleBehaviour moduleBehaviour)
+    private void SetCurrModule(ModuleBehaviour moduleBehaviour)
     {
         _currModule = moduleBehaviour;
         Debug.Log("new module : " + _currModule.name);
@@ -182,51 +185,45 @@ public class PlayerMovementController : MonoBehaviour
         SetPossibleTargetsPos();
     }
 
-    public void SetTargetPos(Vector3 pos)
+    private void SetTargetPos(Vector3 pos)
     {
         _targetPos = pos;
     }
 
-    public void SetPossibleTargetsPos()
+    private void SetPossibleTargetsPos()
     {
         if (_currModule == null) { Debug.LogWarning("NoCurrentModule"); return; }
 
-        if (_movementState == MovementState.walking)
-        {
-            ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
+        ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
 
-            //Forward
-            SetPossibleTargetPos(0, neighbors);
-            //BackWard
-            SetPossibleTargetPos(1, neighbors);
-            //Right
-            SetPossibleTargetPos(2, neighbors);
-            //Left
-            SetPossibleTargetPos(3, neighbors);
-        }
+        //Forward
+        SetPossibleTargetPos(0, neighbors);
+        //BackWard
+        SetPossibleTargetPos(1, neighbors);
+        //Right
+        SetPossibleTargetPos(2, neighbors);
+        //Left
+        SetPossibleTargetPos(3, neighbors);
     }
 
     private void SetPossibleTargetPos(int value, ModuleBehaviour[] neighbors)
     {
-        if (_movementState == MovementState.walking)
+        if (neighbors[value] != null)
         {
-            if (neighbors[value] != null)
-            {
-                Vector3? anchorPos = neighbors[value].GetAnchorPos();
+            Vector3? anchorPos = neighbors[value].GetAnchorPos();
 
-                if (anchorPos != null)
-                {
-                    _possibleTargets[value] = anchorPos;
-                }
-                else
-                {
-                    SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
-                }
+            if (anchorPos != null)
+            {
+                _possibleTargets[value] = anchorPos;
             }
             else
             {
-                _possibleTargets[value] = null;
+                SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
             }
+        }
+        else
+        {
+            _possibleTargets[value] = null;
         }
     }
 
@@ -244,6 +241,5 @@ public class PlayerMovementController : MonoBehaviour
 
 #endregion
 
-public enum MovementState { walking, climbing }
 
-public enum MovementDirection { NONE, UP, DOWN, RIGHT, LEFT }
+public enum MovementDirection { None, Up, Down, Right, Left }
