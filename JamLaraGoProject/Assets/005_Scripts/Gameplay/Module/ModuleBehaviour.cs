@@ -13,6 +13,13 @@ public class ModuleBehaviour : MonoBehaviour
 
     #endregion
 
+    #region Properties
+
+    public bool isLocked { get; set; }
+    public int directionValueLocked { get; set; }
+
+    #endregion
+
     #region UnityInspector
 
     [Header("Anchors")]

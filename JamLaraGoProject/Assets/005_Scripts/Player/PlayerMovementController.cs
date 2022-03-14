@@ -21,7 +21,11 @@ public class PlayerMovementController : MonoBehaviour
 
     #region Properties
 
+    public enum MovementDirection { None, Up, Down, Right, Left }
+
     private readonly Vector3?[] _possibleTargets = new Vector3?[4];
+
+    public ModuleBehaviour CurrModule => _currModule;
 
     #endregion
 
@@ -163,7 +167,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetMovement(int value)
     {
-        Debug.Log("SetMovement");
+        //Debug.Log("SetMovement");
         if (_possibleTargets[value] != null)
         {
             SetTargetPos(_possibleTargets[value].Value);
@@ -209,7 +213,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetPossibleTargetPos(int value, ModuleBehaviour[] neighbors)
     {
-        if (neighbors[value] != null)
+        if (neighbors[value] == null || (neighbors[value].isLocked && neighbors[value].directionValueLocked == value))
+        {
+            Debug.Log(value);
+            _possibleTargets[value] = null;
+        }
+        else
         {
             Vector3? anchorPos = neighbors[value].GetAnchorPos();
 
@@ -221,10 +230,6 @@ public class PlayerMovementController : MonoBehaviour
             {
                 SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
             }
-        }
-        else
-        {
-            _possibleTargets[value] = null;
         }
     }
 
@@ -241,6 +246,3 @@ public class PlayerMovementController : MonoBehaviour
 }
 
 #endregion
-
-
-public enum MovementDirection { None, Up, Down, Right, Left }
