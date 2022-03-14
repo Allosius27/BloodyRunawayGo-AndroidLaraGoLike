@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/007_Scenes/MovementController.unity
-    guid: 18bedce50ac0efb4a887c6155a718106
+    path: Assets/007_Scenes/GameLevel.unity
+    guid: e0fcf62a6434daf48bde230a90e911ac
   - enabled: 1
     path: Assets/007_Scenes/Menus/BootScene.unity
     guid: 47bab6c43f4c5c748b654f5264b21a9a
