@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class PlayerMovementController : MonoBehaviour
 {
-
     #region Fields  
 
     private ModuleBehaviour _currModule = null;
@@ -181,7 +180,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if(moveStep > direction.sqrMagnitude)
         {
-            transform.DOMove(_targetPos.Value, 0.25f);
+            transform.DOMove(_targetPos.Value, 0.125f);
             OnMovementEnd();
         }
         else
@@ -193,12 +192,11 @@ public class PlayerMovementController : MonoBehaviour
     private void SetMovement(int value)
     {
         //Debug.Log("SetMovement");
-        
-        _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
-        _batMovementsCosts = new int[4];
-        
         if (_possibleTargets[value] != null)
         {
+            _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
+            _batMovementsCosts = new int[4];
+            
             SetTargetPos(_possibleTargets[value].Value);
         }
     }
