@@ -17,6 +17,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector3? _targetPos = null;
 
+    private bool canMove = true;
+
     #endregion
 
     #region Properties
@@ -44,41 +46,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         UpdateInput();
         UpdateMovements();
-
-        Test();
     }
-
-    public void Test()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
-
-                for (int i = 0; i < neighbors.Length; i++)
-                {
-                    if (neighbors[i] != null)
-                    {
-                        Vector3 direction = neighbors[i].transform.position - transform.position;
-                        //Debug.Log(direction);
-                        float distance = Vector3.Distance(neighbors[i].transform.position, transform.position);
-                        //Debug.Log(distance);
-                    }
-                }
-            }
-        }
-
-    }
-
     private void UpdateInput()
     {
         if (_targetPos != null) return;
@@ -151,7 +119,7 @@ public class PlayerMovementController : MonoBehaviour
                 _endedPosition = touch.position;
 
                 Vector3 direction = _endedPosition - _beganPosition;
-                Debug.Log("direction : " + direction);
+                //Debug.Log("direction : " + direction);
 
                 if (direction.x > 0 && direction.y > 0)
                 {
@@ -186,7 +154,7 @@ public class PlayerMovementController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
 
-        if ((_targetPos.Value - transform.position).sqrMagnitude < 0.01f) { OnMovementEnd(); }
+        if ((_targetPos.Value - transform.position).sqrMagnitude < 0.1f) { OnMovementEnd(); }
     }
 
     private void SetMovement(int value)
@@ -209,6 +177,7 @@ public class PlayerMovementController : MonoBehaviour
     public void SetCurrModule(ModuleBehaviour moduleBehaviour)
     {
         _currModule = moduleBehaviour;
+        Debug.Log("new module : " + _currModule.name);
 
         SetPossibleTargetsPos();
     }
@@ -249,10 +218,10 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     _possibleTargets[value] = anchorPos;
                 }
-                /*else
+                else
                 {
                     SetPossibleTargetPos(value, neighbors[value].GetNeighbors());
-                }*/
+                }
             }
             else
             {

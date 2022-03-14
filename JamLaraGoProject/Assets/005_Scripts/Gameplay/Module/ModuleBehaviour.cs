@@ -39,7 +39,7 @@ public class ModuleBehaviour : MonoBehaviour
 
     private void Start()
     {
-        RegisterNeighbors();
+        //RegisterNeighbors();
     }
 
     [ContextMenu("CheckNeigbors")]
