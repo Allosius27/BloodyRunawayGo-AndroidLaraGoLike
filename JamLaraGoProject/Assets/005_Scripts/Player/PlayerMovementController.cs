@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -151,7 +152,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if(moveStep > direction.sqrMagnitude)
         {
-            transform.position = _targetPos.Value;
+            transform.DOMove(_targetPos.Value, 0.25f);
             OnMovementEnd();
         }
         else
