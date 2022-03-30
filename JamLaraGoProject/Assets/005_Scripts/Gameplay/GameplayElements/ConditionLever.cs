@@ -16,6 +16,7 @@ public class ConditionLever : BaseLever
     {
         if(canUse)
         {
+            Debug.Log("ActiveLever");
             ActiveLever();
         }
     }

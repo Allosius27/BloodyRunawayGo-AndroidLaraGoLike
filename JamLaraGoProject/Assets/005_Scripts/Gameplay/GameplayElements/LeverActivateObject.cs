@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverActivateObject : MonoBehaviour
+public class LeverActivateObject : GameplayElement
 {
     #region UnityInspector
 
-    [SerializeField] private ModuleBehaviour moduleAssociated;
     [SerializeField] private ConditionLever leverAssociated;
 
     #endregion
@@ -15,7 +14,7 @@ public class LeverActivateObject : MonoBehaviour
 
     public void Use()
     {
-        if(moduleAssociated != null && leverAssociated != null && GameCore.Instance.Player.CurrModule == moduleAssociated)
+        if(moduleAssociated != null && leverAssociated != null && SetCurrentRangeModule())
         {
             leverAssociated.canUse = true;
 

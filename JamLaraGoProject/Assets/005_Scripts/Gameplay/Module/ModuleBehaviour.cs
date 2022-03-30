@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class ModuleBehaviour : MonoBehaviour
         //RegisterNeighbors();
     }
 
-    [ContextMenu("CheckNeigbors")]
+    [Button(ButtonSizes.Medium)]
     public void RegisterNeighbors()
     {
         Vector3[] dir = new Vector3[6];

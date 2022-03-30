@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    #region UnityInspector
+
+    public LayerMask raycastMask;
+
+    #endregion
+
     #region Behaviour
 
     private void Update()
@@ -28,7 +34,7 @@ public class PlayerActions : MonoBehaviour
     {
         Ray raycast = Camera.main.ScreenPointToRay(pos);
         RaycastHit raycastHit;
-        if (Physics.Raycast(raycast, out raycastHit))
+        if (Physics.Raycast(raycast, out raycastHit, Mathf.Infinity, raycastMask))
         {
             if (raycastHit.collider != null)
             {
