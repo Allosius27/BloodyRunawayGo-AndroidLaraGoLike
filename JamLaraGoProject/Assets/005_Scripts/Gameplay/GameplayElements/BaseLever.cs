@@ -23,10 +23,40 @@ public class BaseLever : MonoBehaviour
 
     #region Behaviour
 
-    public void Press()
+    private void Start()
+    {
+        GetModule();
+    }
+
+    public virtual void Press()
+    {
+        ActiveLever();
+    }
+
+    private void GetModule()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        {
+            Debug.Log("Did Hit " + hit.collider.name);
+            ModuleBehaviour module = hit.collider.GetComponent<ModuleBehaviour>();
+            if(module != null)
+            {
+                moduleAssociated = module;
+            }
+            else
+            {
+                moduleAssociated = null;
+            }
+        }
+    }
+
+    public void ActiveLever()
     {
         if (_isActive == false && GameCore.Instance.Player.CurrModule == moduleAssociated)
         {
+            Debug.Log("Active Lever");
+
             _isActive = true;
 
             animator.SetBool("LeverUp", true);

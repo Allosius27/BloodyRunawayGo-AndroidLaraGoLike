@@ -37,7 +37,15 @@ public class PlayerActions : MonoBehaviour
                 BaseLever baseLever = raycastHit.collider.gameObject.GetComponent<BaseLever>();
                 if(baseLever != null)
                 {
+                    Debug.Log("Base Lever Press");
                     baseLever.Press();
+                }
+
+                LeverActivateObject leverActivateObject = raycastHit.collider.gameObject.GetComponent<LeverActivateObject>();
+                if (leverActivateObject != null)
+                {
+                    Debug.Log("Lever Activate Press");
+                    leverActivateObject.Use();
                 }
             }
         }

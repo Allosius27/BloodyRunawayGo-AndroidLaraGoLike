@@ -50,6 +50,8 @@ public class SceneLoader : AllosiusDev.Singleton<SceneLoader>
         AllosiusDev.AudioManager.StopAllAmbients();
         Debug.Log("StopAllAmbients");
 
+        GameCore.ResetInstance();
+
         AsyncOperation operation = SceneManager.LoadSceneAsync((int)(object)_sceneData.sceneToLoad);
 
         while (!operation.isDone)

@@ -33,6 +33,7 @@ public class Curtain : MonoBehaviour
         if(value)
         {
             animator.SetTrigger("Open");
+            lightObj.gameObject.SetActive(true);
         }
         else
         {
