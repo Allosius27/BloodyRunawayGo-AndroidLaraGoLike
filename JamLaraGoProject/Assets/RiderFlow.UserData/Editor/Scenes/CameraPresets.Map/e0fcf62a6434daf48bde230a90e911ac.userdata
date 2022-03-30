@@ -1,0 +1,28 @@
+{
+  "2d699da51c1c7754ba09b52f8125fcfc": {
+    "sceneGuid": "e0fcf62a6434daf48bde230a90e911ac",
+    "uniqueCameraId": "2d699da51c1c7754ba09b52f8125fcfc",
+    "name": "Camera Preset",
+    "pointX": 0.724571943,
+    "pointY": 0.3947878,
+    "pointZ": -3.22920132,
+    "directionX": -0.5731288,
+    "directionY": 0.110273905,
+    "directionZ": -0.07819241,
+    "directionW": -0.8082433,
+    "zoom": 4.415199
+  },
+  "96866bdc5d423e044acf262e8f500e03": {
+    "sceneGuid": "e0fcf62a6434daf48bde230a90e911ac",
+    "uniqueCameraId": "96866bdc5d423e044acf262e8f500e03",
+    "name": "Door View",
+    "pointX": 2.138821,
+    "pointY": 2.87751651,
+    "pointZ": 0.330629766,
+    "directionX": -0.249405518,
+    "directionY": 0.5077302,
+    "directionZ": -0.1563936,
+    "directionW": -0.809664547,
+    "zoom": 1.9497869
+  }
+}
