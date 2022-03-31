@@ -52,6 +52,10 @@ public class Door : MonoBehaviour
         {
             doorVisual.transform.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
         }
+        else
+        {
+            doorVisual.transform.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
+        }
     }
 
     #endregion

@@ -7,7 +7,16 @@ public class BaseLever : GameplayElement
 {
     #region Fields
 
-    private bool _isActive;
+
+    #endregion
+
+    #region Properties
+
+    public bool _isActive { get; protected set; }
+    public Animator Animator => animator;
+
+    public UnityEvent OnActivation => onActivation;
+    public UnityEvent OnDeactivation => onDeactivation;
 
     #endregion
 
@@ -16,7 +25,8 @@ public class BaseLever : GameplayElement
     [SerializeField] private Animator animator;
 
 
-    [SerializeField] UnityEvent onPress;
+    [SerializeField] UnityEvent onActivation;
+    [SerializeField] UnityEvent onDeactivation;
 
     #endregion
 
@@ -27,17 +37,25 @@ public class BaseLever : GameplayElement
         ActiveLever();
     }
 
-    public void ActiveLever()
+    public virtual void ActiveLever()
     {
-        if (_isActive == false && SetCurrentRangeModule())
+        if (SetCurrentRangeModule())
         {
             Debug.Log("Active Lever");
 
-            _isActive = true;
+            Animator.SetBool("LeverUp", !_isActive);
 
-            animator.SetBool("LeverUp", true);
+            if (_isActive == false)
+            {
+                OnActivation.Invoke();
+            }
+            else
+            {
+                onDeactivation.Invoke();
+            }
 
-            onPress.Invoke();
+            _isActive = !_isActive;
+
         }
     }
 
