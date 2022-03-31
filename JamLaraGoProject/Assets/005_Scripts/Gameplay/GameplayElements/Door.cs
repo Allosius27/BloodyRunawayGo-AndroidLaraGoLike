@@ -9,7 +9,6 @@ public class Door : MonoBehaviour
 
     private bool _isOpen;
 
-
     #endregion
 
     #region UnityInspector
@@ -25,7 +24,6 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-
         SetDoorState(false);
     }
 
@@ -50,11 +48,11 @@ public class Door : MonoBehaviour
 
         if (_isOpen)
         {
-            doorVisual.transform.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
+            doorVisual.transform.localRotation = Quaternion.Euler(0, 0, -90.0f);
         }
         else
         {
-            doorVisual.transform.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
+            doorVisual.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
 

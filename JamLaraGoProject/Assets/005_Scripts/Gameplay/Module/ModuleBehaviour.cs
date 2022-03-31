@@ -16,6 +16,9 @@ public class ModuleBehaviour : MonoBehaviour
 
     #region Properties
 
+    public PressurePlate pressurePlateAssociated { get; set; }
+
+
     public bool isLocked { get; set; }
 
     public bool isLighting { get; set; }
@@ -103,7 +106,12 @@ public class ModuleBehaviour : MonoBehaviour
             return;
         }
 
-        if(isLighting)
+        if (pressurePlateAssociated != null)
+        {
+            pressurePlateAssociated.PlayerPress();
+        }
+
+        if (isLighting)
         {
             GameCore.Instance.GameOver();
         }

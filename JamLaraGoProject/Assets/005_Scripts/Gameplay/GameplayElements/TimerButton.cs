@@ -21,15 +21,30 @@ public class TimerButton : BaseLever
     public override void ActiveLever()
     {
         if (coroutineActivationDuration != null)
+        {
+            Debug.Log("Stop Coroutine");
             StopCoroutine(coroutineActivationDuration);
+        }
 
-        coroutineActivationDuration = CoroutineActivationDuration();
-        StartCoroutine(CoroutineActivationDuration());
+        if (_isActive == false)
+        {
+            Debug.Log("Coroutine Activation Duration");
+
+            coroutineActivationDuration = CoroutineActivationDuration();
+            StartCoroutine(coroutineActivationDuration);
+        }
+        else
+        {
+            Debug.Log("Active Lever");
+
+            base.ActiveLever();
+        }
+        
     }
 
     private IEnumerator CoroutineActivationDuration()
     {
-        Debug.Log("Coroutine Activation Duration");
+        Debug.Log("Activation Duration");
 
         base.ActiveLever();
 

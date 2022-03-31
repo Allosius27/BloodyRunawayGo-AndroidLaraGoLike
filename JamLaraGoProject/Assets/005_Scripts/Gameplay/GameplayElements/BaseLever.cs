@@ -47,10 +47,12 @@ public class BaseLever : GameplayElement
 
             if (_isActive == false)
             {
+                Debug.Log("On Activation");
                 OnActivation.Invoke();
             }
             else
             {
+                Debug.Log("On Deactivation");
                 onDeactivation.Invoke();
             }
 
