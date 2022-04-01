@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -20,6 +23,8 @@ public class PlayerMovementController : MonoBehaviour
     private BatMovement _batMovement = null;
 
     private int[] _batMovementsCosts = new int[4];
+
+    private bool _canDoUpMovement = false;
     
     #endregion
 
@@ -37,6 +42,8 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private float _movementSpeed = 5f;
 
+    [SerializeField] private Button _upMovementButton = null;
+
     #endregion
 
     #region Behaviour
@@ -48,6 +55,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start()
     {
+        _upMovementButton.onClick.AddListener(DoUpMovement);
+        _upMovementButton.gameObject.SetActive(false);
         CheckForCurrModule();
     }
 
@@ -276,6 +285,30 @@ public class PlayerMovementController : MonoBehaviour
             {
                 SetCurrModule(module);
             }
+        }
+    }
+
+    private void DoUpMovement()
+    {
+        Debug.Log("UpMovement");
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<UpDownMovementObjectBehaviour>(out UpDownMovementObjectBehaviour upDownMovement))
+        {
+            if (upDownMovement.GetMovementsCost() <= _batMovement.GetCurrBatMovement())
+            {
+                _upMovementButton.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<UpDownMovementObjectBehaviour>())
+        {
+            _upMovementButton.gameObject.SetActive(false);
         }
     }
 }
