@@ -13,7 +13,7 @@ public class Curtain : GameplayElement
 
     [SerializeField] private bool _isOpen;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator[] animators;
 
     [SerializeField] private LightObject lightObj;
 
@@ -42,12 +42,18 @@ public class Curtain : GameplayElement
 
         if(value)
         {
-            animator.SetTrigger("Open");
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetTrigger("Open");
+            }
             lightObj.gameObject.SetActive(true);
         }
         else
         {
-            animator.SetTrigger("Close");
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetTrigger("Close");
+            }
             lightObj.DeactiveLight();
         }
     }

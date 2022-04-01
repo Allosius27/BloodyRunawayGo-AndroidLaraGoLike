@@ -88,7 +88,7 @@ public class ModuleBehaviour : GameplayElement
             {
                 ModuleBehaviour moduleBehaviour = hit.collider.gameObject.GetComponent<ModuleBehaviour>();
                 MovingModuleBehaviour movingModuleBehaviour = hit.collider.gameObject.GetComponent<MovingModuleBehaviour>();
-
+                
                 
                 if (moduleBehaviour != null && movingModuleBehaviour == null)
                 {
@@ -119,6 +119,11 @@ public class ModuleBehaviour : GameplayElement
     public Vector3? GetAnchorPos()
     {
         return _anchorPos;
+    }
+
+    public virtual void OnWalked()
+    {
+
     }
 
     public void CheckCurrentPlayerModule(ModuleBehaviour playerModule)

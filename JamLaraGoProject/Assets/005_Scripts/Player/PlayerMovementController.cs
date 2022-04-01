@@ -25,10 +25,12 @@ public class PlayerMovementController : MonoBehaviour
     private int[] _batMovementsCosts = new int[4];
 
     private bool _canDoUpMovement = false;
-    
+
     #endregion
 
     #region Properties
+
+    public bool fall { get; set; }
 
     private enum MovementDirection { None, Up, Down, Right, Left }
 
@@ -64,6 +66,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         UpdateInput();
         UpdateMovements();
+
+        if (fall)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * _movementSpeed);
+        }
     }
     private void UpdateInput()
     {
@@ -226,6 +233,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         _currModule = moduleBehaviour;
+        _currModule.OnWalked();
         Debug.Log("new module : " + _currModule.name);
 
         _currModule.CheckCurrentPlayerModule(_currModule);
