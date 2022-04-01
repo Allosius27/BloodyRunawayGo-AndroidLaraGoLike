@@ -12,6 +12,7 @@ public class ModuleBehaviour : MonoBehaviour
 
     private Vector3? _anchorPos = null;
 
+    private bool _topAnchor = true;
     #endregion
 
     #region Properties
@@ -29,8 +30,7 @@ public class ModuleBehaviour : MonoBehaviour
 
     #region UnityInspector
 
-    [Header("Anchors")]
-    [SerializeField] private bool _topAnchor = true;
+    [Header("Anchors")] 
     [SerializeField] private GameObject _anchorSprite = null;
 
     public ModuleBehaviour[] _neighbors = new ModuleBehaviour[6];
@@ -120,13 +120,19 @@ public class ModuleBehaviour : MonoBehaviour
     #endregion
 
     #region Gizmos
-
     private void OnDrawGizmosSelected()
     {
         if (!_topAnchor) return;
 
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + _meshSize, transform.position.z), 0.5f);
+    }
+    
+    [Button(ButtonSizes.Medium)]
+    public void SetWalkableUnwakable()
+    {
+        _topAnchor = !_topAnchor;
+        _anchorSprite.SetActive(_topAnchor);
     }
 
     #endregion
