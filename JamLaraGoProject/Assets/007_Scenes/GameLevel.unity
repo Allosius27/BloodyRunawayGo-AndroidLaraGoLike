@@ -452,7 +452,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8578015352166203907, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
       propertyPath: _topAnchor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8578015352166203907, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
       propertyPath: _rightAnchor
@@ -469,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 8578015352166203907, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
       propertyPath: _neighbors.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2866479355427663087}
     - target: {fileID: 8578015352166203907, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
       propertyPath: _neighbors.Array.data[2]
       value: 
@@ -540,7 +540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005880619520760399, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22d19ee379afd74eb6c9ba4552b7956, type: 3}
@@ -3512,10 +3512,6 @@ PrefabInstance:
     - target: {fileID: 5822305816652014891, guid: b33da59596129a54388ea3d230c2db62, type: 3}
       propertyPath: m_Name
       value: MovingModule
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202631980666345812, guid: b33da59596129a54388ea3d230c2db62, type: 3}
-      propertyPath: moveSpeed
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8202631980666345812, guid: b33da59596129a54388ea3d230c2db62, type: 3}
       propertyPath: _neighbors.Array.data[0]

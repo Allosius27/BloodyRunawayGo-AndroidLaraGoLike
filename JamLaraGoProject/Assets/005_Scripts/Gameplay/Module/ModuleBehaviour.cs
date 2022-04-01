@@ -86,7 +86,23 @@ public class ModuleBehaviour : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1f))
             {
-                hit.collider.gameObject.TryGetComponent<ModuleBehaviour>(out _neighbors[i]);
+                ModuleBehaviour moduleBehaviour = hit.collider.gameObject.GetComponent<ModuleBehaviour>();
+                MovingModuleBehaviour movingModuleBehaviour = hit.collider.gameObject.GetComponent<MovingModuleBehaviour>();
+
+                
+                if (moduleBehaviour != null && movingModuleBehaviour == null)
+                {
+                    _neighbors[i] = moduleBehaviour;
+                }
+                else if (movingModuleBehaviour != null && movingModuleBehaviour.MoveLoop == false && movingModuleBehaviour.IsMoving == false)
+                {
+                    _neighbors[i] = movingModuleBehaviour;
+                }
+                else
+                {
+                    _neighbors[i] = null;
+                }
+                //hit.collider.gameObject.TryGetComponent<ModuleBehaviour>(out _neighbors[i]);
             }
             else
             {

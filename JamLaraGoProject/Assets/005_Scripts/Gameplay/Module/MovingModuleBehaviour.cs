@@ -13,7 +13,15 @@ public class MovingModuleBehaviour : ModuleBehaviour
     private Vector3 currentTargetA;
     private Vector3 currentTargetB;
 
-    private bool moving;
+    private bool isMoving;
+
+    #endregion
+
+    #region Properties
+
+    public bool IsMoving => isMoving;
+
+    public bool MoveLoop => moveLoop;
 
     #endregion
 
@@ -57,7 +65,7 @@ public class MovingModuleBehaviour : ModuleBehaviour
 
         transform.DOKill();
 
-        if (moving)
+        if (isMoving)
         {
             EndMove();
         }
@@ -69,7 +77,8 @@ public class MovingModuleBehaviour : ModuleBehaviour
     {
         Debug.Log("Moving");
 
-        moving = true;
+        isMoving = true;
+        CheckCurrentNeighbors();
 
         float duration = Vector3.Distance(currentTarget, transform.position);
         transform.DOLocalMove(currentTarget, duration * (1/moveSpeed)).SetEase(Ease.Linear).OnComplete(EndMove);
@@ -79,7 +88,7 @@ public class MovingModuleBehaviour : ModuleBehaviour
     {
         Debug.Log("EndMove");
 
-        moving = false;
+        isMoving = false;
 
         if (targetIndex == 0)
         {
