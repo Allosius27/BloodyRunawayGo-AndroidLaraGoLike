@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverActivateObject : GameplayElement
+public class LeverActivateObject : InteractibleObject
 {
     #region UnityInspector
 

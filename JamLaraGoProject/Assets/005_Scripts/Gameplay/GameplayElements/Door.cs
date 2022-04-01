@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Door : MonoBehaviour
+public class Door : GameplayElement
 {
     #region Fields
 
@@ -27,6 +27,16 @@ public class Door : MonoBehaviour
         SetDoorState(false);
     }
 
+    public override void Activate()
+    {
+        SetDoorState(!_isOpen);
+    }
+
+    public override void Deactivate()
+    {
+        SetDoorState(!_isOpen);
+    }
+
     public void GetModulesNeighbours(Vector3 _direction)
     {
         RaycastHit hit;
@@ -36,7 +46,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void SetDoorState(bool value)
+    private void SetDoorState(bool value)
     {
         _isOpen = value;
 
@@ -55,6 +65,8 @@ public class Door : MonoBehaviour
             doorVisual.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+    
 
     #endregion
 }

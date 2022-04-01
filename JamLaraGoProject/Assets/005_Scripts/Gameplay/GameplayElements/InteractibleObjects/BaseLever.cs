@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseLever : GameplayElement
+public class BaseLever : InteractibleObject
 {
     #region Fields
 

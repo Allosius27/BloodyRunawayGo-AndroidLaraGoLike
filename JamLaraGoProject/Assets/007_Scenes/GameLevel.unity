@@ -2119,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 793892286053289357}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2127,7 +2127,7 @@ PrefabInstance:
       objectReference: {fileID: 793892286053289357}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2139,7 +2139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCurtainState
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -2147,7 +2147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCurtainState
+      value: Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3426,7 +3426,7 @@ PrefabInstance:
       objectReference: {fileID: 1706504527}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3434,7 +3434,7 @@ PrefabInstance:
       objectReference: {fileID: 1649600154}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3442,11 +3442,11 @@ PrefabInstance:
       objectReference: {fileID: 1649600154}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoorState
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoorState
+      value: Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 1481048763162056596, guid: be3346b6d506e3347b051cdb8468d3c8, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3568,7 +3568,7 @@ PrefabInstance:
       objectReference: {fileID: 1649600154}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3576,7 +3576,7 @@ PrefabInstance:
       objectReference: {fileID: 1649600154}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3588,7 +3588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoorState
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3596,7 +3596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoorState
+      value: Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 504283351297841097, guid: 5f57481619052e94bb677b2ad3bbc26a, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3794,7 +3794,7 @@ PrefabInstance:
       objectReference: {fileID: 793892286053289357}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3802,7 +3802,7 @@ PrefabInstance:
       objectReference: {fileID: 793892286053289357}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3814,7 +3814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCurtainState
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3822,7 +3822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCurtainState
+      value: Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 6068721071928877787, guid: 34d06d09950da4047a4f972bda6ab310, type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -4013,7 +4013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMove
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -4021,7 +4021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMove
+      value: Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7436257674890623063, guid: fd3d750b7e41b4441918b6764942160d, type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

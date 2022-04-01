@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Curtain : MonoBehaviour
+public class Curtain : GameplayElement
 {
     #region Fields
 
@@ -26,7 +26,17 @@ public class Curtain : MonoBehaviour
         SetCurtainState(_isOpen);
     }
 
-    public void SetCurtainState(bool value)
+    public override void Activate()
+    {
+        SetCurtainState(!_isOpen);
+    }
+
+    public override void Deactivate()
+    {
+        SetCurtainState(!_isOpen);
+    }
+
+    private void SetCurtainState(bool value)
     {
         _isOpen = value;
 
@@ -38,9 +48,11 @@ public class Curtain : MonoBehaviour
         else
         {
             animator.SetTrigger("Close");
-            lightObj.DesactiveLight();
+            lightObj.DeactiveLight();
         }
     }
+
+   
 
     #endregion
 }

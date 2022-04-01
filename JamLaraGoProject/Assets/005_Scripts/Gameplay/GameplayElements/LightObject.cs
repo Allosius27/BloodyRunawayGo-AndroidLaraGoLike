@@ -10,7 +10,7 @@ public class LightObject : MonoBehaviour
 
     #endregion
 
-    public void DesactiveLight()
+    public void DeactiveLight()
     {
         for (int i = 0; i < modulesAssociated.Count; i++)
         {

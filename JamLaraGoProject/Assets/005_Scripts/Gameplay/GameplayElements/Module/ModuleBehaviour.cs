@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ModuleBehaviour : MonoBehaviour
+public class ModuleBehaviour : GameplayElement
 {
     #region Fields
 
@@ -137,6 +137,16 @@ public class ModuleBehaviour : MonoBehaviour
         {
             GameCore.Instance.GameOver();
         }
+    }
+
+    public override void Activate()
+    {
+        
+    }
+
+    public override void Deactivate()
+    {
+        
     }
 
     #endregion

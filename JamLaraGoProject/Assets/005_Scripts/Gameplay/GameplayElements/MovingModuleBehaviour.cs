@@ -59,7 +59,17 @@ public class MovingModuleBehaviour : ModuleBehaviour
         
     }
 
-    public void SetMove()
+    public override void Activate()
+    {
+        SetMove();
+    }
+
+    public override void Deactivate()
+    {
+        SetMove();
+    }
+
+    private void SetMove()
     {
         Debug.Log("StopMove");
 
