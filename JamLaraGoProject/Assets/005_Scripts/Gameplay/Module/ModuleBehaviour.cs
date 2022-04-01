@@ -12,7 +12,6 @@ public class ModuleBehaviour : MonoBehaviour
 
     private Vector3? _anchorPos = null;
 
-    private bool _topAnchor = true;
     #endregion
 
     #region Properties
@@ -30,6 +29,8 @@ public class ModuleBehaviour : MonoBehaviour
 
     #region UnityInspector
 
+    [HideInInspector] [SerializeField] private bool _topAnchor = true;
+
     [Header("Anchors")] 
     [SerializeField] private GameObject _anchorSprite = null;
 
@@ -40,10 +41,15 @@ public class ModuleBehaviour : MonoBehaviour
 
     #region Behavior
 
-    private void Awake()
+    public virtual void Awake()
     {
         _meshSize = this.transform.GetChild(0).localScale.x;
 
+        SetAnchorPos();
+    }
+
+    public void SetAnchorPos()
+    {
         Vector3 pos = transform.position;
 
         if (_topAnchor) _anchorPos = (pos + new Vector3(0f, _meshSize, 0f));
@@ -51,7 +57,7 @@ public class ModuleBehaviour : MonoBehaviour
         _anchorSprite.SetActive(_topAnchor);
     }
 
-    private void Start()
+    public virtual void Start()
     {
         RegisterNeighbors();
     }
@@ -120,7 +126,7 @@ public class ModuleBehaviour : MonoBehaviour
     #endregion
 
     #region Gizmos
-    private void OnDrawGizmosSelected()
+    public virtual void OnDrawGizmosSelected()
     {
         if (!_topAnchor) return;
 
