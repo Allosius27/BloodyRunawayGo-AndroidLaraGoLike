@@ -53,7 +53,7 @@ public class ModuleBehaviour : MonoBehaviour
 
     private void Start()
     {
-        //RegisterNeighbors();
+        RegisterNeighbors();
     }
 
     [Button(ButtonSizes.Medium)]

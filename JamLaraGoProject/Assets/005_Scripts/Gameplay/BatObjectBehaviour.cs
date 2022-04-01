@@ -12,6 +12,7 @@ public class BatObjectBehaviour : MonoBehaviour
         if (other.TryGetComponent<BatMovement>(out BatMovement batMovement))
         {
             batMovement.ChangeBatMovementCount(_batAmount);
+            Destroy(this.gameObject);
         }
     }
 }
