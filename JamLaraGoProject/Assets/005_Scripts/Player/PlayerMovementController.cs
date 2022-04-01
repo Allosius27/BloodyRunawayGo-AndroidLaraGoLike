@@ -211,10 +211,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetCurrModule(ModuleBehaviour moduleBehaviour)
     {
-        _currModule = moduleBehaviour;
-        
-        _currModule.CheckCurrentPlayerModule(_currModule);
+        if (_currModule != null)
+        {
+            _currModule.CheckCurrentPlayerModule(_currModule);
+        }
 
+        _currModule = moduleBehaviour;
         Debug.Log("new module : " + _currModule.name);
 
         _currModule.CheckCurrentPlayerModule(_currModule);
