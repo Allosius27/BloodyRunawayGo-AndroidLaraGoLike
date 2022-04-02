@@ -86,7 +86,9 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        selectLevelPanel.gameObject.SetActive(true);
+        SceneLoader.Instance.ActiveLoadingScreen(startLevelSceneData, 1.0f);
+
+        //selectLevelPanel.gameObject.SetActive(true);
     }
    
     public void Options()

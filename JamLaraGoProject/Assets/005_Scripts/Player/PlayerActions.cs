@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    #region Fields
+
+    private PlayerMovementController playerMovementController;
+
+    #endregion
+
     #region UnityInspector
 
     public LayerMask raycastMask;
@@ -12,6 +18,11 @@ public class PlayerActions : MonoBehaviour
 
     #region Behaviour
 
+    private void Start()
+    {
+        playerMovementController = GetComponent<PlayerMovementController>();
+    }
+
     private void Update()
     {
         RaycastHits();
@@ -19,15 +30,29 @@ public class PlayerActions : MonoBehaviour
 
     public void RaycastHits()
     {
+#if UNITY_ANDROID
+        if ((Input.touchCount > 0))
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+
+                if (playerMovementController.MovementDir == PlayerMovementController.MovementDirection.None)
+                {
+                    Debug.Log("Android Raycast Hits");
+                    GenerateRaycast(Input.GetTouch(0).position);
+                }
+            }
+            
+        }
+#endif
+
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("PC Raycast Hits");
             GenerateRaycast(Input.mousePosition);
         }
-
-        if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
-        {
-            GenerateRaycast(Input.GetTouch(0).position);
-        }
+#endif
     }
 
     private void GenerateRaycast(Vector3 pos)
@@ -38,6 +63,13 @@ public class PlayerActions : MonoBehaviour
         {
             if (raycastHit.collider != null)
             {
+                ModuleBehaviour module = raycastHit.collider.gameObject.GetComponent<ModuleBehaviour>();
+                if(module != null)
+                {
+                    Debug.Log("Module Touch");
+                    return;
+                }
+
                 Debug.Log(raycastHit.collider.name);
 
                 BaseLever baseLever = raycastHit.collider.gameObject.GetComponent<BaseLever>();
@@ -57,5 +89,5 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    #endregion
+#endregion
 }

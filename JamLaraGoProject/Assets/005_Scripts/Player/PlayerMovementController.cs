@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Rendering;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
@@ -13,7 +11,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private ModuleBehaviour _currModule = null;
     
-    private MovementDirection _movementDirection = MovementDirection.None;
 
     private Vector3 _beganPosition = Vector3.zero;
     private Vector3 _endedPosition = Vector3.zero;
@@ -24,17 +21,20 @@ public class PlayerMovementController : MonoBehaviour
 
     private int[] _batMovementsCosts = new int[4];
 
-    private bool _canDoUpMovement = false;
+    private readonly Vector3?[] _possibleTargets = new Vector3?[4];
+
+    private MovementDirection _movementDir = MovementDirection.None;
+
+    //private bool _canDoUpMovement = false;
 
     #endregion
 
     #region Properties
+    public enum MovementDirection { None, Up, Down, Right, Left }
+
+    public MovementDirection MovementDir => _movementDir;
 
     public bool fall { get; set; }
-
-    private enum MovementDirection { None, Up, Down, Right, Left }
-
-    private readonly Vector3?[] _possibleTargets = new Vector3?[4];
 
     public ModuleBehaviour CurrModule => _currModule;
 
@@ -77,12 +77,17 @@ public class PlayerMovementController : MonoBehaviour
         if (_targetPos != null) return;
 
         int currBatMovement = _batMovement.GetCurrBatMovement();
-        
-        GetKeyboardInputs();
 
+#if UNITY_ANDROID
         GetMobileInputs();
+#endif
 
-        if (_movementDirection == MovementDirection.Up)
+#if UNITY_EDITOR
+        GetKeyboardInputs();
+#endif
+
+
+        if (_movementDir == MovementDirection.Up)
         {
             if (_batMovementsCosts[0] <= currBatMovement)
             {
@@ -90,21 +95,21 @@ public class PlayerMovementController : MonoBehaviour
             }
 
         }
-        else if (_movementDirection == MovementDirection.Down)
+        else if (_movementDir == MovementDirection.Down)
         {
             if (_batMovementsCosts[1] <= currBatMovement)
             {
                 SetMovement(1);
             }
         }
-        else if (_movementDirection == MovementDirection.Right)
+        else if (_movementDir == MovementDirection.Right)
         {
             if (_batMovementsCosts[2] <= currBatMovement)
             {
                 SetMovement(2);
             }
         }
-        else if (_movementDirection == MovementDirection.Left)
+        else if (_movementDir == MovementDirection.Left)
         {
             if (_batMovementsCosts[3] <= currBatMovement)
             {
@@ -117,23 +122,23 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _movementDirection = MovementDirection.Up;
+            _movementDir = MovementDirection.Up;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            _movementDirection = MovementDirection.Down;
+            _movementDir = MovementDirection.Down;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _movementDirection = MovementDirection.Right;
+            _movementDir = MovementDirection.Right;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            _movementDirection = MovementDirection.Left;
+            _movementDir = MovementDirection.Left;
         }
     }
 
@@ -163,25 +168,25 @@ public class PlayerMovementController : MonoBehaviour
                 if (direction.x > 0 && direction.y > 0)
                 {
                     Debug.Log("RIGHT");
-                    _movementDirection = MovementDirection.Right;
+                    _movementDir = MovementDirection.Right;
                 }
 
                 if (direction.x > 0 && direction.y < 0)
                 {
                     Debug.Log("DOWN");
-                    _movementDirection = MovementDirection.Down;
+                    _movementDir = MovementDirection.Down;
                 }
 
                 if (direction.x < 0 && direction.y < 0)
                 {
                     Debug.Log("LEFT");
-                    _movementDirection = MovementDirection.Left;
+                    _movementDir = MovementDirection.Left;
                 }
 
                 if (direction.x < 0 && direction.y > 0)
                 {
                     Debug.Log("UP");
-                    _movementDirection = MovementDirection.Up;
+                    _movementDir = MovementDirection.Up;
                 }
             }
         }
@@ -221,7 +226,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         Debug.Log("OnMovementEnd");
         _targetPos = null;
-        _movementDirection = MovementDirection.None;
+        _movementDir = MovementDirection.None;
         CheckForCurrModule();
     }
 
