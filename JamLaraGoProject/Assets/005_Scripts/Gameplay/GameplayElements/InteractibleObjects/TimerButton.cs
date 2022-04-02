@@ -50,7 +50,9 @@ public class TimerButton : BaseLever
 
         yield return new WaitForSeconds(activationDuration);
 
-        base.ActiveLever();
+        Debug.Log("Activation Stop");
+
+        ChangeState();
     }
 
     #endregion

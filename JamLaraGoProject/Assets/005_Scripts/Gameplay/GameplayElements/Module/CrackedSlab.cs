@@ -45,9 +45,12 @@ public class CrackedSlab : ModuleBehaviour
         if(currentDurability <= 0)
         {
             currentDurability = 0;
+
             graphics.SetActive(false);
             colliderObj.enabled = false;
+
             GameCore.Instance.Player.fall = true;
+            GameCore.Instance.Player.canMove = false;
         }
     }
 

@@ -126,7 +126,7 @@ public class MovingModuleBehaviour : ModuleBehaviour
     private void CheckCurrentNeighbors()
     {
         RegisterNeighbors();
-        for (int i = 0; i < _neighbors.Length; i++)
+        for (int i = 0; i < _neighbors.Count; i++)
         {
             if (_neighbors[i] != null)
             {

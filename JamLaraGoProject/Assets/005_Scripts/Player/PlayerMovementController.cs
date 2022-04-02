@@ -34,6 +34,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public MovementDirection MovementDir => _movementDir;
 
+    public bool canMove { get; set; }
+
     public bool fall { get; set; }
 
     public ModuleBehaviour CurrModule => _currModule;
@@ -57,6 +59,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start()
     {
+        canMove = true;
+
         _upMovementButton.onClick.AddListener(DoUpMovement);
         _upMovementButton.gameObject.SetActive(false);
         CheckForCurrModule();
@@ -64,8 +68,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        UpdateInput();
-        UpdateMovements();
+        if (canMove)
+        {
+            UpdateInput();
+            UpdateMovements();
+        }
 
         if (fall)
         {
@@ -86,8 +93,7 @@ public class PlayerMovementController : MonoBehaviour
         GetKeyboardInputs();
 #endif
 
-
-        if (_movementDir == MovementDirection.Up)
+        if (_movementDir == MovementDirection.Up && _currModule.upDirectionLocked == false)
         {
             if (_batMovementsCosts[0] <= currBatMovement)
             {
@@ -95,21 +101,21 @@ public class PlayerMovementController : MonoBehaviour
             }
 
         }
-        else if (_movementDir == MovementDirection.Down)
+        else if (_movementDir == MovementDirection.Down && _currModule.downDirectionLocked == false)
         {
             if (_batMovementsCosts[1] <= currBatMovement)
             {
                 SetMovement(1);
             }
         }
-        else if (_movementDir == MovementDirection.Right)
+        else if (_movementDir == MovementDirection.Right && _currModule.rightDirectionLocked == false)
         {
             if (_batMovementsCosts[2] <= currBatMovement)
             {
                 SetMovement(2);
             }
         }
-        else if (_movementDir == MovementDirection.Left)
+        else if (_movementDir == MovementDirection.Left && _currModule.leftDirectionLocked == false)
         {
             if (_batMovementsCosts[3] <= currBatMovement)
             {
@@ -164,6 +170,15 @@ public class PlayerMovementController : MonoBehaviour
 
                 Vector3 direction = _endedPosition - _beganPosition;
                 //Debug.Log("direction : " + direction);
+
+                Debug.Log(direction);
+                //Debug.Log(Mathf.Abs(_currModule.GetAnchorPos().Value.x + _currModule.transform.position.x) + " " + Mathf.Abs(_currModule.GetAnchorPos().Value.z + +_currModule.transform.position.z));
+
+                if (Mathf.Abs(direction.x) < _currModule.DetectionRange && Mathf.Abs(direction.y) < _currModule.DetectionRange)
+                {
+                    _movementDir = MovementDirection.None;
+                    return;
+                }
 
                 if (direction.x > 0 && direction.y > 0)
                 {
@@ -255,7 +270,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_currModule == null) { Debug.LogWarning("NoCurrentModule"); return; }
 
-        ModuleBehaviour[] neighbors = _currModule.GetNeighbors();
+        List<ModuleBehaviour> neighbors = _currModule.GetNeighbors();
 
         //Forward
         SetPossibleTargetPos(0, neighbors);
@@ -267,9 +282,9 @@ public class PlayerMovementController : MonoBehaviour
         SetPossibleTargetPos(3, neighbors);
     }
 
-    private void SetPossibleTargetPos(int value, ModuleBehaviour[] neighbors)
+    private void SetPossibleTargetPos(int value, List<ModuleBehaviour> neighbors)
     {
-        if (neighbors[value] == null || (neighbors[value].isLocked && neighbors[value].directionValueLocked == value))
+        if (neighbors[value] == null)
         {
             Debug.Log(value);
             _possibleTargets[value] = null;

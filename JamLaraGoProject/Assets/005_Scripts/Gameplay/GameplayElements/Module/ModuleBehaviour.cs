@@ -16,14 +16,18 @@ public class ModuleBehaviour : GameplayElement
 
     #region Properties
 
+    public float DetectionRange => detectionRange;
+
     public PressurePlate pressurePlateAssociated { get; set; }
 
 
-    public bool isLocked { get; set; }
-
     public bool isLighting { get; set; }
 
-    public int directionValueLocked { get; set; }
+
+    public bool upDirectionLocked { get; set; }
+    public bool downDirectionLocked { get; set; }
+    public bool rightDirectionLocked { get; set; }
+    public bool leftDirectionLocked { get; set; }
 
     #endregion
 
@@ -31,10 +35,12 @@ public class ModuleBehaviour : GameplayElement
 
     [HideInInspector] [SerializeField] private bool _topAnchor = true;
 
+    [SerializeField] private float detectionRange;
+
     [Header("Anchors")] 
     [SerializeField] private GameObject _anchorSprite = null;
 
-    public ModuleBehaviour[] _neighbors = new ModuleBehaviour[6];
+    public List<ModuleBehaviour> _neighbors = new List<ModuleBehaviour>(6);
 
     #endregion
 
@@ -53,6 +59,8 @@ public class ModuleBehaviour : GameplayElement
         Vector3 pos = transform.position;
 
         if (_topAnchor) _anchorPos = (pos + new Vector3(0f, _meshSize, 0f));
+
+        //Debug.Log(_anchorPos);
 
         _anchorSprite.SetActive(_topAnchor);
     }
@@ -111,7 +119,7 @@ public class ModuleBehaviour : GameplayElement
         }
     }
 
-    public ModuleBehaviour[] GetNeighbors()
+    public List<ModuleBehaviour> GetNeighbors()
     {
         return _neighbors;
     }

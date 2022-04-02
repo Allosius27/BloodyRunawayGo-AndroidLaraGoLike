@@ -41,24 +41,29 @@ public class BaseLever : InteractibleObject
     {
         if (SetCurrentRangeModule())
         {
-            Debug.Log("Active Lever");
 
-            Animator.SetBool("LeverUp", !_isActive);
-
-            if (_isActive == false)
-            {
-                Debug.Log("On Activation");
-                OnActivation.Invoke();
-            }
-            else
-            {
-                Debug.Log("On Deactivation");
-                onDeactivation.Invoke();
-            }
-
-            _isActive = !_isActive;
-
+            ChangeState();
         }
+    }
+
+    public virtual void ChangeState()
+    {
+        Debug.Log("Active Lever");
+
+        Animator.SetBool("LeverUp", !_isActive);
+
+        if (_isActive == false)
+        {
+            Debug.Log("On Activation");
+            OnActivation.Invoke();
+        }
+        else
+        {
+            Debug.Log("On Deactivation");
+            onDeactivation.Invoke();
+        }
+
+        _isActive = !_isActive;
     }
 
     #endregion

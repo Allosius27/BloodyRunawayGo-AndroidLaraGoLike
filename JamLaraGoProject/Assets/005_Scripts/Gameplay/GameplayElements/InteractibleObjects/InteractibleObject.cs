@@ -13,7 +13,7 @@ public abstract class InteractibleObject : MonoBehaviour
     #region UnityInspector
 
     public ModuleBehaviour moduleAssociated;
-    public List<ModuleBehaviour> modulesNeighbours;
+    //public List<ModuleBehaviour> modulesNeighbours;
 
     #endregion
 
@@ -21,7 +21,7 @@ public abstract class InteractibleObject : MonoBehaviour
 
     public virtual void Start()
     {
-        modulesNeighbours = new List<ModuleBehaviour>();
+        //modulesNeighbours = new List<ModuleBehaviour>();
 
         GetModule();
     }
@@ -44,16 +44,16 @@ public abstract class InteractibleObject : MonoBehaviour
             }
         }
 
-        if (moduleAssociated != null)
+        /*if (moduleAssociated != null)
         {
-            for (int i = 0; i < moduleAssociated._neighbors.Length; i++)
+            for (int i = 0; i < moduleAssociated._neighbors.Count; i++)
             {
                 if (moduleAssociated._neighbors[i] != null && modulesNeighbours.Contains(moduleAssociated._neighbors[i]) == false)
                 {
                     modulesNeighbours.Add(moduleAssociated._neighbors[i]);
                 }
             }
-        }
+        }*/
     }
 
     public bool SetCurrentRangeModule()
@@ -62,7 +62,7 @@ public abstract class InteractibleObject : MonoBehaviour
         {
             return true;
         }
-        else if(modulesNeighbours.Contains(GameCore.Instance.Player.CurrModule))
+        else if(moduleAssociated._neighbors.Contains(GameCore.Instance.Player.CurrModule))
         {
             return true;
         }
