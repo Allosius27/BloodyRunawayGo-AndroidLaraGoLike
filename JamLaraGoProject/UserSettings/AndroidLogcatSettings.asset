@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R58R92M5E9F",
         "name": "com.DefaultCompany.LaragoMobile",
-        "processId": 22139,
+        "processId": 13510,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -66,6 +66,12 @@
             "deviceId": "R58R92M5E9F",
             "name": "com.DefaultCompany.LaragoMobile",
             "processId": 22139,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R92M5E9F",
+            "name": "com.DefaultCompany.LaragoMobile",
+            "processId": 13510,
             "exited": false
         }
     ],
