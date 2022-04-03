@@ -17,4 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/007_Scenes/Menus/CreditsScene.unity
     guid: 395a0cda6e05ddb45aa1b315294820dd
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b3b22cdb64e8f8543a098f8ce4840806,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: b8819f2914b139742ad27d314faa41ee, type: 2}
