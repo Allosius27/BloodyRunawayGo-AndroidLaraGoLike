@@ -44,6 +44,27 @@ public class Enemy : InteractibleObject
         UpdateEnemyTargets();
     }
 
+    public override bool SetCurrentRangeModule()
+    {
+        if (GameCore.Instance.Player.CurrModule == null || moduleAssociated == null)
+        {
+            return false;
+        }
+
+        if (GameCore.Instance.Player.CurrModule == moduleAssociated)
+        {
+            Debug.Log(GameCore.Instance.Player.CurrModule + " " + moduleAssociated.gameObject.name);
+            return true;
+        }
+        else if (moduleAssociated._neighbors.Contains(GameCore.Instance.Player.CurrModule))
+        {
+            Debug.Log(GameCore.Instance.Player.CurrModule + " " + moduleAssociated.gameObject.name);
+            return true;
+        }
+
+        return false;
+    }
+
     [Button(ButtonSizes.Medium)]
     public void CheckForCollisions()
     {

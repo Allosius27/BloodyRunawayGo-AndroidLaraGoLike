@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
@@ -143,7 +144,6 @@ public class PlayerMovementController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
             _movementDir = MovementDirection.Left;
         }
     }
@@ -231,6 +231,23 @@ public class PlayerMovementController : MonoBehaviour
         {
             _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
             _batMovementsCosts = new int[4];
+
+            if (value == 0)
+            {
+                transform.DORotate(new Vector3(0, 0, 0),0.2f);
+            }
+            else if(value == 1)
+            {
+                transform.DORotate(new Vector3(0, 180),0.2f);
+            }
+            else if(value == 2)
+            {
+                transform.DORotate(new Vector3(0, 90, 0),0.2f);
+            }
+            else if(value == 3)
+            {
+                transform.DORotate(new Vector3(0, 270, 0),0.2f);
+            }
             
             SetTargetPos(_possibleTargets[value].Value);
         }
@@ -299,7 +316,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (neighbors[value] == null)
         {
-            Debug.Log(value);
             _possibleTargets[value] = null;
         }
         else
