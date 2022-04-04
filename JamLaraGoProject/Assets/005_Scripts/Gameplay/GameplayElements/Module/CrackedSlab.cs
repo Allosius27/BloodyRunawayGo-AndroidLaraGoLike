@@ -6,7 +6,8 @@ public class CrackedSlab : ModuleBehaviour
 {
     #region Fields
 
-    private int currentDurability;
+    private int maxDurability;
+    private int currentDamage;
 
     #endregion
 
@@ -17,10 +18,10 @@ public class CrackedSlab : ModuleBehaviour
 
     #region UnityInspector
 
-    [SerializeField] private GameObject graphics;
+    [SerializeField] private MeshRenderer graphics;
     [SerializeField] private Collider colliderObj;
 
-    [SerializeField] private int maxDurability = 3;
+    [SerializeField] private CrackedSlabData crackedSlabData;
 
     #endregion
 
@@ -30,23 +31,27 @@ public class CrackedSlab : ModuleBehaviour
     {
         base.Start();
 
-        currentDurability = maxDurability;
+        maxDurability = crackedSlabData.statesMeshes.Count-1;
+
+        graphics.GetComponent<MeshFilter>().mesh = crackedSlabData.statesMeshes[currentDamage];
     }
 
     public override void OnWalked()
     {
-        if(currentDurability <= 0)
+        if(currentDamage >= maxDurability)
         {
             return;
         }
 
-        currentDurability -= 1;
+        currentDamage += 1;
 
-        if(currentDurability <= 0)
+        graphics.GetComponent<MeshFilter>().mesh = crackedSlabData.statesMeshes[currentDamage];
+
+        if (currentDamage >= maxDurability)
         {
-            currentDurability = 0;
+            currentDamage = maxDurability;
 
-            graphics.SetActive(false);
+            //graphics.gameObject.SetActive(false);
             colliderObj.enabled = false;
 
             GameCore.Instance.Player.fall = true;

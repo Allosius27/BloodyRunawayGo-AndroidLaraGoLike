@@ -16,7 +16,7 @@ public class ModuleBehaviour : GameplayElement
 
     #region Properties
 
-    public float DetectionRange => detectionRange;
+    public float DetectionRange => detectionRangeValue;
 
     public PressurePlate pressurePlateAssociated { get; set; }
 
@@ -37,7 +37,7 @@ public class ModuleBehaviour : GameplayElement
 
     [HideInInspector] [SerializeField] private bool _topAnchor = true;
 
-    [SerializeField] private float detectionRange;
+    [SerializeField] private float detectionRangeValue = 10.0f;
 
     [Header("Anchors")] 
     [SerializeField] private GameObject _anchorSprite = null;

@@ -54,7 +54,7 @@ public abstract class InteractibleObject : MonoBehaviour
         }*/
     }
 
-    public bool SetCurrentRangeModule()
+    public virtual bool SetCurrentRangeModule()
     {
         if(GameCore.Instance.Player.CurrModule == null || moduleAssociated == null)
         {
@@ -62,11 +62,6 @@ public abstract class InteractibleObject : MonoBehaviour
         }
 
         if(GameCore.Instance.Player.CurrModule == moduleAssociated)
-        {
-            Debug.Log(GameCore.Instance.Player.CurrModule + " " + moduleAssociated.gameObject.name);
-            return true;
-        }
-        else if(moduleAssociated._neighbors.Contains(GameCore.Instance.Player.CurrModule))
         {
             Debug.Log(GameCore.Instance.Player.CurrModule + " " + moduleAssociated.gameObject.name);
             return true;
