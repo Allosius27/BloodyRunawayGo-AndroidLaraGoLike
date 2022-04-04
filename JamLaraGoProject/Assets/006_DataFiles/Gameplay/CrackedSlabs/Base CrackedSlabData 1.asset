@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa3144cf07329b47808c0c78072a8b6, type: 3}
+  m_Name: Base CrackedSlabData 1
+  m_EditorClassIdentifier: 
+  statesMeshes:
+  - {fileID: 2212009239438826721, guid: dbee307e4258c8446b7daf9c27ba3e1a, type: 3}
+  - {fileID: -153830957423991239, guid: 1ec925edbd70a504e874aa87b6f7da24, type: 3}
