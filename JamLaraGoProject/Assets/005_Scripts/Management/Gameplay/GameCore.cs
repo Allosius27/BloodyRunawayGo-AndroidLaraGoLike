@@ -8,6 +8,8 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
 
     public PlayerMovementController Player => player;
 
+    public List<Enemy> Enemies => enemies;
+
     #endregion
 
     #region UnityInspector
@@ -15,6 +17,8 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
     [SerializeField] private SceneData currentLevelData;
 
     [SerializeField] private PlayerMovementController player;
+
+    [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
     #endregion
 
