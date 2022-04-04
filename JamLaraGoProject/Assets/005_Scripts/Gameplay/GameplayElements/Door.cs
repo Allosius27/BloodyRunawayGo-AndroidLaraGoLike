@@ -34,6 +34,8 @@ public class Door : GameplayElement
 
     private void Start()
     {
+        entity = GetComponent<Entity>();
+
         SetDoorState(false);
 
         GetModulesLocked();
@@ -138,10 +140,14 @@ public class Door : GameplayElement
         if (_isOpen)
         {
             doorVisual.transform.localRotation = Quaternion.Euler(-90.0f, -90.0f, 0f);
+
+            entity.ChangeIsObstacleState(Entity.isObstacle.NotObstacle);
         }
         else
         {
             doorVisual.transform.localRotation = Quaternion.Euler(-90.0f, 0, 0);
+
+            entity.ChangeIsObstacleState(Entity.isObstacle.IsObstacle);
         }
     }
 

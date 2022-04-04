@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : InteractibleObject
 {
     #region Fields
 
-    [SerializeField] private List<ModuleBehaviour> modulesVisibles = new List<ModuleBehaviour>();
+    private List<Entity> listHits = new List<Entity>();
+    private List<ModuleBehaviour> modulesVisibles = new List<ModuleBehaviour>();
 
     private Vector3 m_DetectorOffset = Vector3.zero;
 
@@ -17,23 +18,30 @@ public class Enemy : MonoBehaviour
 
     public List<ModuleBehaviour> ModulesVisibles => modulesVisibles;
 
+    public ModuleBehaviour ModuleAssociated => moduleAssociated;
+
     #endregion
 
     #region UnityInspector
 
-    public List<Entity> listHits = new List<Entity>();
 
     [SerializeField] private Vector3 m_DetectorSize = Vector3.zero;
 
     [SerializeField] private Transform rangePoint;
+    [SerializeField] private Transform bulletPoint;
+
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Animator anim;
 
     #endregion
 
     #region Behaviour
 
-    private void Start()
+    public override void Start()
     {
-        CheckForCollisions();
+        base.Start();
+
+        UpdateEnemyTargets();
     }
 
     [Button(ButtonSizes.Medium)]
@@ -41,12 +49,6 @@ public class Enemy : MonoBehaviour
     {
         modulesVisibles.Clear();
         listHits.Clear();
-        /*RaycastHit hit;
-        if (Physics.Raycast(rangePoint.position, rangePoint.TransformDirection(Vector3.forward), out hit, m_DetectorSize.z * 2))
-        {
-            Debug.DrawRay(rangePoint.position, rangePoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did hit " + hit.collider.name);
-        }*/
 
         RaycastHit[] hits;
         hits = Physics.RaycastAll(rangePoint.position, rangePoint.TransformDirection(Vector3.forward), m_DetectorSize.z * 2);
@@ -59,25 +61,29 @@ public class Enemy : MonoBehaviour
                 listHits.Add(entity);
                 entity.distanceEnemyChecked = 0;
             }
-
-            /*Entity entity = hits[i].collider.GetComponent<Entity>();
-            if(entity != null && entity.IsObstacle == Entity.isObstacle.IsObstacle)
-            {
-                Debug.Log("Has Obstacle");
-                return;
-            }
-
-            ModuleBehaviour module = hits[i].collider.GetComponent<ModuleBehaviour>();
-            if (module != null && modulesVisibles.Contains(module) == false)
-            {
-                modulesVisibles.Add(module);
-            }*/
         }
 
         for (int i = 0; i < listHits.Count; i++)
         {
             float distance = Vector3.Distance(listHits[i].transform.position, rangePoint.position);
             listHits[i].distanceEnemyChecked = distance;
+        }
+
+        listHits.Sort(SortByDistance);
+
+        for (int i = 0; i < listHits.Count; i++)
+        {
+            if(listHits[i].IsObstacle == Entity.isObstacle.IsObstacle)
+            {
+                Debug.Log("Has Obstacle");
+                return;
+            }
+
+            ModuleBehaviour module = listHits[i].GetComponent<ModuleBehaviour>();
+            if (module != null && modulesVisibles.Contains(module) == false)
+            {
+                modulesVisibles.Add(module);
+            }
         }
 
         /*modulesVisibles.Clear();
@@ -101,6 +107,41 @@ public class Enemy : MonoBehaviour
                 }
             }
         }*/
+    }
+
+    public void UpdateEnemyTargets()
+    {
+        CheckForCollisions();
+
+        if(modulesVisibles.Contains(GameCore.Instance.Player.CurrModule))
+        {
+            Debug.Log("Enemy Detects Player");
+            GameCore.Instance.Player.canMove = false;
+
+            anim.SetTrigger("Attack");
+
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.transform.SetParent(bulletPoint);
+            bullet.transform.localPosition = Vector3.zero;
+            bullet.transform.rotation = Quaternion.identity;
+        }
+    }
+
+    public void CheckPlayerCanAttack()
+    {
+        if(SetCurrentRangeModule())
+        {
+            anim.SetTrigger("Death");
+            GameCore.Instance.Enemies.Remove(this);
+            this.enabled = false;
+        }
+    }
+
+    private int SortByDistance(Entity a, Entity b)
+    {
+        float entityA = a.distanceEnemyChecked;
+        float entityB = b.distanceEnemyChecked;
+        return entityA.CompareTo(entityB);
     }
 
     #endregion

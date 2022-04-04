@@ -23,6 +23,8 @@ public class Curtain : GameplayElement
 
     private void Start()
     {
+        entity = GetComponent<Entity>();
+
         SetCurtainState(_isOpen);
     }
 
@@ -42,11 +44,14 @@ public class Curtain : GameplayElement
 
         if(value)
         {
+
             for (int i = 0; i < animators.Length; i++)
             {
                 animators[i].SetTrigger("Open");
             }
             lightObj.gameObject.SetActive(true);
+
+            entity.ChangeIsObstacleState(Entity.isObstacle.NotObstacle);
         }
         else
         {
@@ -55,6 +60,8 @@ public class Curtain : GameplayElement
                 animators[i].SetTrigger("Close");
             }
             lightObj.DeactiveLight();
+
+            entity.ChangeIsObstacleState(Entity.isObstacle.IsObstacle);
         }
     }
 
