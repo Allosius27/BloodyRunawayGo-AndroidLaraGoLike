@@ -10,7 +10,6 @@ public class PlayerMovementController : MonoBehaviour
     #region Fields  
 
     private ModuleBehaviour _currModule = null;
-    
 
     private Vector3 _beganPosition = Vector3.zero;
     private Vector3 _endedPosition = Vector3.zero;
@@ -25,7 +24,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private MovementDirection _movementDir = MovementDirection.None;
 
-    //private bool _canDoUpMovement = false;
+    private bool _isInUpMovement = false;
+    private bool _isInDownMovement = false;
 
     #endregion
 
@@ -227,7 +227,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetMovement(int value)
     {
-        //Debug.Log("SetMovement");
         if (_possibleTargets[value] != null)
         {
             _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
@@ -239,9 +238,23 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnMovementEnd()
     {
-        Debug.Log("OnMovementEnd");
         _targetPos = null;
         _movementDir = MovementDirection.None;
+
+        if (_isInUpMovement && upDownBlock != null)
+        {
+            _targetPos = upDownBlock.transform.position;
+            _isInUpMovement = false;
+            upDownBlock = null;
+        }
+
+        if (_isInDownMovement && upDownBlock != null)
+        {
+            _targetPos = upDownBlock.transform.position;
+            _isInDownMovement = false;
+            upDownBlock = null;
+        }
+        
         CheckForCurrModule();
     }
 
@@ -316,15 +329,47 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void DoUpMovement()
+    GameObject upDownBlock = null;
+    public void DoUpMovement()
     {
-        Debug.Log("UpMovement");
+        if (upDownBlock == null) return;
+
+        Vector3 target = Vector3.zero;;
+        
+        if (upDownBlock.tag == "Up")
+        {
+            _isInUpMovement = true;
+            target = new Vector3(transform.position.x, upDownBlock.transform.position.y, transform.position.z); 
+            _batMovement.ChangeBatMovementCount(-upDownMovement.GetMovementsCost());
+        }
+        else if(upDownBlock.tag == "Down")
+        {
+            _isInDownMovement = true;
+            target = new Vector3(upDownBlock.transform.position.x, transform.position.y, upDownBlock.transform.position.z);
+        }
+        _targetPos = target;
+
+        _upMovementButton.gameObject.SetActive(false);
     }
-    
+
+    private UpDownMovementObjectBehaviour upDownMovement = null;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<UpDownMovementObjectBehaviour>(out UpDownMovementObjectBehaviour upDownMovement))
+        if (other.gameObject.GetComponentInParent<UpDownMovementObjectBehaviour>())
         {
+            upDownMovement = other.gameObject.GetComponentInParent<UpDownMovementObjectBehaviour>();
+            
+            if (other.gameObject == upDownMovement.UpBlock)
+            {
+                upDownBlock = upDownMovement.DownBlock;
+                _upMovementButton.transform.eulerAngles = new Vector3(0, 0, 180f);
+            }
+            else if(other.gameObject == upDownMovement.DownBlock)
+            {
+                upDownBlock = upDownMovement.UpBlock;
+                _upMovementButton.transform.eulerAngles = new Vector3(0, 0, 0f);
+            }
+            
             if (upDownMovement.GetMovementsCost() <= _batMovement.GetCurrBatMovement())
             {
                 _upMovementButton.gameObject.SetActive(true);
@@ -334,7 +379,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<UpDownMovementObjectBehaviour>())
+        if (other.gameObject.GetComponentInParent<UpDownMovementObjectBehaviour>())
         {
             _upMovementButton.gameObject.SetActive(false);
         }

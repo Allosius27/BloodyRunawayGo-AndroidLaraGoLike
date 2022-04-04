@@ -9,8 +9,8 @@ public class UpDownMovementObjectBehaviour : MonoBehaviour
 {
     [SerializeField] private int _upMovementsCost = 1;
     
-    [SerializeField] private GameObject _upBlock;
-    [SerializeField] private GameObject _downBlock;
+    public GameObject UpBlock;
+    public GameObject DownBlock;
 
     [SerializeField] private RectTransform _upArrowSprite = null;
     [SerializeField] private RectTransform _downArrowSprite = null;
@@ -28,8 +28,8 @@ public class UpDownMovementObjectBehaviour : MonoBehaviour
     private void LateUpdate()
     {
         if (Camera.main == null) return;
-        _upArrowSprite.position = Camera.main.WorldToScreenPoint(this._upBlock.transform.position) + new Vector3(0,10f + movableOffset,0);
-        _downArrowSprite.position = Camera.main.WorldToScreenPoint(this._downBlock.transform.position) + new Vector3(0,10f + movableOffset,0);
+        _upArrowSprite.position = Camera.main.WorldToScreenPoint(this.DownBlock.transform.position) + new Vector3(0,10f + movableOffset,0);
+        _downArrowSprite.position = Camera.main.WorldToScreenPoint(this.UpBlock.transform.position) + new Vector3(0,10f + movableOffset,0);
         
         movableOffset = math.lerp(movableOffset, targetOffset, Time.deltaTime * 5f);
 
