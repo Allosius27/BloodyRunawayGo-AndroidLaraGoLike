@@ -21,4 +21,14 @@ public class Entity : MonoBehaviour
     }
 
     #endregion
+
+    #region Behaviour
+
+    public void ChangeIsObstacleState(isObstacle value)
+    {
+        IsObstacle = value;
+        GameCore.Instance.UpdateEnemiesBehaviour();
+    }
+
+    #endregion
 }

@@ -33,6 +33,8 @@ public class ModuleBehaviour : GameplayElement
 
     #region UnityInspector
 
+    [SerializeField] private LayerMask modulesLayerMask;
+
     [HideInInspector] [SerializeField] private bool _topAnchor = true;
 
     [SerializeField] private float detectionRange;
@@ -92,7 +94,7 @@ public class ModuleBehaviour : GameplayElement
         {
             Ray ray = new Ray(pos, dir[i]);
 
-            if (Physics.Raycast(ray, out hit, 1f))
+            if (Physics.Raycast(ray, out hit, 1f, modulesLayerMask))
             {
                 ModuleBehaviour moduleBehaviour = hit.collider.gameObject.GetComponent<ModuleBehaviour>();
                 MovingModuleBehaviour movingModuleBehaviour = hit.collider.gameObject.GetComponent<MovingModuleBehaviour>();
@@ -150,6 +152,8 @@ public class ModuleBehaviour : GameplayElement
         {
             GameCore.Instance.GameOver();
         }
+
+        GameCore.Instance.UpdateEnemiesBehaviour();
     }
 
     public override void Activate()

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class GameplayElement : MonoBehaviour
 {
+    #region Properties
+
+    public Entity entity { get; protected set; }
+
+    #endregion
+
     #region Behaviour
 
     public abstract void Activate();

@@ -31,5 +31,14 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
         SceneLoader.Instance.ActiveLoadingScreen(currentLevelData, 1.0f);
     }
 
+    public void UpdateEnemiesBehaviour()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].UpdateEnemyTargets();
+            enemies[i].CheckPlayerCanAttack();
+        }
+    }
+
     #endregion
 }
