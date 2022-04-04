@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
 {
+    #region Fields
+
+    private Rigidbody rb;
+
+    private Vector3 velocity = Vector3.zero;
+
+    #endregion
+
+    #region Properties
+
+    public Vector3 direction { get; set; }
+
+    public GameObject Graphics => graphics;
+
+    #endregion
 
     #region UnityInspector
+
+    [SerializeField] private GameObject graphics;
 
     [SerializeField] private float speed;
 
@@ -13,9 +30,15 @@ public class BulletEnemy : MonoBehaviour
 
     #region Behaviour
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        //rb.velocity = Vector3.SmoothDamp(rb.velocity, direction * speed, ref velocity, 0.05f);
+        transform.Translate(direction * Time.deltaTime * speed);
     }
 
     private void OnTriggerEnter(Collider other)

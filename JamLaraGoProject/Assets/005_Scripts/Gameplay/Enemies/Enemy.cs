@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +14,9 @@ public class Enemy : InteractibleObject
     #endregion
 
     #region Properties
+
+    public bool canAttack { get; set; }
+    public bool canDied { get; set; }
 
     public List<ModuleBehaviour> ModulesVisibles => modulesVisibles;
 
@@ -39,9 +41,24 @@ public class Enemy : InteractibleObject
 
     public override void Start()
     {
-        base.Start();
+        canAttack = this;
+        canDied = this;
 
-        UpdateEnemyTargets();
+        GetCurrentModule();
+
+        UpdateEnemyBehaviour();
+    }
+
+    public void GetCurrentModule()
+    {
+        GetModule();
+
+        MovingModuleBehaviour movingModuleBehaviour = moduleAssociated.GetComponent<MovingModuleBehaviour>();
+        if (movingModuleBehaviour != null)
+        {
+            transform.parent = movingModuleBehaviour.transform;
+            movingModuleBehaviour.enemyAssociated = this;
+        }
     }
 
     public override bool SetCurrentRangeModule()
@@ -130,11 +147,11 @@ public class Enemy : InteractibleObject
         }*/
     }
 
-    public void UpdateEnemyTargets()
+    public bool UpdateEnemyBehaviour()
     {
         CheckForCollisions();
 
-        if(modulesVisibles.Contains(GameCore.Instance.Player.CurrModule))
+        if(modulesVisibles.Contains(GameCore.Instance.Player.CurrModule) && canAttack)
         {
             Debug.Log("Enemy Detects Player");
             GameCore.Instance.Player.canMove = false;
@@ -145,12 +162,21 @@ public class Enemy : InteractibleObject
             bullet.transform.SetParent(bulletPoint);
             bullet.transform.localPosition = Vector3.zero;
             bullet.transform.rotation = Quaternion.identity;
+
+            bullet.GetComponent<BulletEnemy>().Graphics.transform.localEulerAngles = transform.localEulerAngles;
+
+            Vector3 direction = rangePoint.TransformDirection(Vector3.forward);
+            bullet.GetComponent<BulletEnemy>().direction = direction;
+
+            return true;
         }
+
+        return false;
     }
 
     public void CheckPlayerCanAttack()
     {
-        if(SetCurrentRangeModule())
+        if(SetCurrentRangeModule() && canDied)
         {
             anim.SetTrigger("Death");
             GameCore.Instance.Enemies.Remove(this);

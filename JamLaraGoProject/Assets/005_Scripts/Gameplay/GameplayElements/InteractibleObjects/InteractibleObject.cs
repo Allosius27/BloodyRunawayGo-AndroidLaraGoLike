@@ -7,12 +7,12 @@ public abstract class InteractibleObject : MonoBehaviour
 {
     #region Properties
 
+    public ModuleBehaviour moduleAssociated { get; protected set; }
 
     #endregion
 
     #region UnityInspector
 
-    public ModuleBehaviour moduleAssociated;
     //public List<ModuleBehaviour> modulesNeighbours;
 
     #endregion

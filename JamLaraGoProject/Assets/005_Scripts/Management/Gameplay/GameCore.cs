@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class GameCore : AllosiusDev.Singleton<GameCore>
 {
+    #region Fields
+
+    private PlayerMovementController player;
+
+    private List<Enemy> enemies = new List<Enemy>();
+
+    #endregion
+
     #region Properties
 
     public PlayerMovementController Player => player;
 
     public List<Enemy> Enemies => enemies;
+
+    public bool gameEnd { get; set; }
 
     #endregion
 
@@ -16,27 +26,42 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
 
     [SerializeField] private SceneData currentLevelData;
 
-    [SerializeField] private PlayerMovementController player;
-
-    [SerializeField] private List<Enemy> enemies = new List<Enemy>();
-
     #endregion
 
     #region Behaviour
 
-    
+    protected override void Awake()
+    {
+        base.Awake();
+
+        var enemiesFound = FindObjectsOfType<Enemy>();
+        for (int i = 0; i < enemiesFound.Length; i++)
+        {
+            enemies.Add(enemiesFound[i]);
+        }
+
+        player = FindObjectOfType<PlayerMovementController>();
+    }
+
 
     public void GameOver()
     {
-        SceneLoader.Instance.ActiveLoadingScreen(currentLevelData, 1.0f);
+        if (gameEnd == false)
+        {
+            SceneLoader.Instance.ActiveLoadingScreen(currentLevelData, 1.0f);
+            gameEnd = true;
+        }
     }
 
     public void UpdateEnemiesBehaviour()
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].UpdateEnemyTargets();
-            enemies[i].CheckPlayerCanAttack();
+            bool enemyTarget = enemies[i].UpdateEnemyBehaviour();
+            if (enemyTarget == false)
+            {
+                enemies[i].CheckPlayerCanAttack();
+            }
         }
     }
 

@@ -19,6 +19,8 @@ public class MovingModuleBehaviour : ModuleBehaviour
 
     #region Properties
 
+    public Enemy enemyAssociated { get; set; }
+
     public bool IsMoving => isMoving;
 
     public bool MoveLoop => moveLoop;
@@ -89,6 +91,11 @@ public class MovingModuleBehaviour : ModuleBehaviour
 
         isMoving = true;
         CheckCurrentNeighbors();
+        if(enemyAssociated != null)
+        {
+            enemyAssociated.canAttack = false;
+            enemyAssociated.canDied = false;
+        }
 
         float duration = Vector3.Distance(currentTarget, transform.position);
         transform.DOLocalMove(currentTarget, duration * (1/moveSpeed)).SetEase(Ease.Linear).OnComplete(EndMove);
@@ -120,6 +127,14 @@ public class MovingModuleBehaviour : ModuleBehaviour
             CheckCurrentNeighbors();
 
             SetAnchorPos();
+
+            if (enemyAssociated != null)
+            {
+                enemyAssociated.canAttack = true;
+                enemyAssociated.canDied = true;
+            }
+
+            GameCore.Instance.UpdateEnemiesBehaviour();
         }
     }
 
