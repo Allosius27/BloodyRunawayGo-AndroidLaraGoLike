@@ -336,13 +336,13 @@ public class PlayerMovementController : MonoBehaviour
 
         Vector3 target = Vector3.zero;;
         
-        if (upDownBlock.tag == "Up")
+        if (upDownBlock == upDownMovement.UpBlock)
         {
             _isInUpMovement = true;
             target = new Vector3(transform.position.x, upDownBlock.transform.position.y, transform.position.z); 
             _batMovement.ChangeBatMovementCount(-upDownMovement.GetMovementsCost());
         }
-        else if(upDownBlock.tag == "Down")
+        else if(upDownBlock == upDownMovement.DownBlock)
         {
             _isInDownMovement = true;
             target = new Vector3(upDownBlock.transform.position.x, transform.position.y, upDownBlock.transform.position.z);
@@ -363,6 +363,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 upDownBlock = upDownMovement.DownBlock;
                 _upMovementButton.transform.eulerAngles = new Vector3(0, 0, 180f);
+                _upMovementButton.gameObject.SetActive(true);
             }
             else if(other.gameObject == upDownMovement.DownBlock)
             {
