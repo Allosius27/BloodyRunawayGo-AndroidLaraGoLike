@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     #region Properties
     public GameObject SettingsMenu { get; protected set; }
+    public SelectLevelPanel selectLevelPanel { get; protected set; }
 
     public bool activeSettings { get; set; }
     public bool activesButtons { get; set; }
@@ -26,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     //public string loadGameScene;
 
-    [SerializeField] private SceneData startLevelSceneData;
+    //[SerializeField] private SceneData startLevelSceneData;
 
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
@@ -34,10 +35,6 @@ public class MainMenu : MonoBehaviour
     [Space]
 
     public AllosiusDev.AudioData mainMenuMusic;
-
-    [Space]
-
-    [SerializeField] private SelectLevelPanel selectLevelPanel;
 
     #endregion
 
@@ -47,6 +44,8 @@ public class MainMenu : MonoBehaviour
     {
 
         SettingsMenu = UICanvasManager.Instance.SettingsMenu.gameObject;
+        selectLevelPanel = UICanvasManager.Instance.SelectLevelPanel;
+        selectLevelPanel.mainMenu = this;
 
         activesButtons = true;
 
@@ -86,9 +85,9 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        SceneLoader.Instance.ActiveLoadingScreen(startLevelSceneData, 1.0f);
+        //SceneLoader.Instance.ActiveLoadingScreen(startLevelSceneData, 1.0f);
 
-        //selectLevelPanel.gameObject.SetActive(true);
+        selectLevelPanel.gameObject.SetActive(true);
     }
    
     public void Options()

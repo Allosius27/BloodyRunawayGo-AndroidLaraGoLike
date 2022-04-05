@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: MainMenu SceneData
   m_EditorClassIdentifier: 
   sceneToLoad: 1
+  sceneName: Menu principal
+  sceneImg: {fileID: 0}

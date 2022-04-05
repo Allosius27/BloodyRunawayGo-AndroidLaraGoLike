@@ -25,6 +25,7 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
     #region UnityInspector
 
     [SerializeField] private SceneData currentLevelData;
+    [SerializeField] private SceneData nextLevelData;
 
     #endregion
 
@@ -49,6 +50,15 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
         if (gameEnd == false)
         {
             SceneLoader.Instance.ActiveLoadingScreen(currentLevelData, 1.0f);
+            gameEnd = true;
+        }
+    }
+
+    public void LevelCompleted()
+    {
+        if (gameEnd == false)
+        {
+            SceneLoader.Instance.ActiveLoadingScreen(nextLevelData, 1.0f);
             gameEnd = true;
         }
     }

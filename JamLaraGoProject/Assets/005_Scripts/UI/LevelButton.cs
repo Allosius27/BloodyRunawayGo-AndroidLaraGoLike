@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
@@ -8,17 +9,34 @@ public class LevelButton : MonoBehaviour
 
     public SelectLevelPanel selectLevelPanel { get; set; }
 
-    public SceneData levelData { get; set; }
+    public int levelDataIndex { get; set; }
+
+    public Text TextLabel => textLabel;
+    public Image ImgLevel => imgLevel;
+
+    public GameObject ActiveObj => activeObj;
+
+    #endregion
+
+    #region UnityInspector
+
+    [SerializeField] private Text textLabel;
+    [SerializeField] private Image imgLevel;
+
+    [SerializeField] private GameObject activeObj;
 
     #endregion
 
     #region Behaviour
 
-    public void LaunchLevel(float _timeToWait)
+    private void Start()
     {
-        selectLevelPanel.gameObject.SetActive(false);
-        PauseMenu.canPause = true;
-        SceneLoader.Instance.ActiveLoadingScreen(levelData, _timeToWait);
+        activeObj.SetActive(false);
+    }
+
+    public void SelectLeverButton()
+    {
+        selectLevelPanel.SetCurrentLevelSelected(this);
     }
 
     #endregion

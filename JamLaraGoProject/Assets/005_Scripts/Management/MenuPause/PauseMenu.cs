@@ -6,17 +6,37 @@ using UnityEditor;
 
 public class PauseMenu : MonoBehaviour
 {
+    #region Fields
+
+    private GameObject settingsMenu;
+
+    private SelectLevelPanel selectLevelPanel;
+
+
+    #endregion
+
+    #region Properties
+
     public static bool gameIsPaused = false;
     public static bool canPause = true;
-    public GameObject settingsMenu;
-    public GameObject pauseMenuUI;
+
+    #endregion
+
+    #region UnityInspector
+
+    [SerializeField] private GameObject pauseMenuUI;
 
     [SerializeField] private SceneData mainMenuSceneData;
+
+    #endregion
+
+    #region Behaviour
 
     // Start is called before the first frame update
     void Start()
     {
-
+        settingsMenu = UICanvasManager.Instance.SettingsMenu.gameObject;
+        selectLevelPanel = UICanvasManager.Instance.SelectLevelPanel;
     }
 
     // Update is called once per frame
@@ -65,6 +85,11 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+    public void LevelSelectionMenu()
+    {
+        selectLevelPanel.gameObject.SetActive(true);
+    }
+
     public void LoadSettings()
     {
         Debug.Log("Loading Settings menu");
@@ -78,4 +103,6 @@ public class PauseMenu : MonoBehaviour
         AllosiusDev.AudioManager.StopAllMusics();
         SceneLoader.Instance.ActiveLoadingScreen(mainMenuSceneData, 1.0f);
     }
+
+    #endregion
 }

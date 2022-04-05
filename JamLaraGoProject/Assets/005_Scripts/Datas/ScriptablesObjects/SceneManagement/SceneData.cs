@@ -9,5 +9,8 @@ public class SceneData : ScriptableObject
 
     public Scenes sceneToLoad;
 
+    public string sceneName;
+    public Sprite sceneImg;
+
     #endregion
 }

@@ -3757,18 +3757,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1633444382}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1633444384 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3439529533917529429, guid: f5cb5a5af9f7a474d8690d8903df343c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1633444382}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7e8c7fdc96aff459359b624607516f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1649600152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5597,18 +5585,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47917c6336379b54ca78969ee6361fb2, type: 3}
---- !u!114 &3672890323878883692 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3672890324242052658, guid: 47917c6336379b54ca78969ee6361fb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 3672890323878883691}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672890323878883693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b70e57f6a3dd9408f9c8aa63ddf368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3672890323878883693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3672890324242052668, guid: 47917c6336379b54ca78969ee6361fb2,
@@ -6219,21 +6195,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1772277224}
     m_Modifications:
-    - target: {fileID: 45260191536353088, guid: 7baf1f969b27df140a6e0c760d8f83ef,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 3672890323878883692}
-    - target: {fileID: 45260191536353088, guid: 7baf1f969b27df140a6e0c760d8f83ef,
-        type: 3}
-      propertyPath: enemies.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 45260191536353088, guid: 7baf1f969b27df140a6e0c760d8f83ef,
-        type: 3}
-      propertyPath: enemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 1633444384}
     - target: {fileID: 45260191536353090, guid: 7baf1f969b27df140a6e0c760d8f83ef,
         type: 3}
       propertyPath: m_Name
