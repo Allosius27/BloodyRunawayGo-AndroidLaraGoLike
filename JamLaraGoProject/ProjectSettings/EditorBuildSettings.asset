@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/007_Scenes/GameLevel.unity
     guid: e0fcf62a6434daf48bde230a90e911ac
   - enabled: 1
+    path: Assets/007_Scenes/GD_LD_Rom1 1.unity
+    guid: d6d61efb7164c5040a6ebf98ae11dce8
+  - enabled: 1
     path: Assets/007_Scenes/Menus/CreditsScene.unity
     guid: 395a0cda6e05ddb45aa1b315294820dd
   m_configObjects: {}
