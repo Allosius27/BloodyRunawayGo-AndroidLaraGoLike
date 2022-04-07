@@ -58,6 +58,14 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
     {
         if (gameEnd == false)
         {
+            for (int i = 0; i < UICanvasManager.Instance.SelectLevelPanel.UnlockLevels.Count; i++)
+            {
+                if (nextLevelData == UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i].levelData)
+                {
+                    UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i].isUnlocked = true;
+                }
+            }
+
             SceneLoader.Instance.ActiveLoadingScreen(nextLevelData, 1.0f);
             gameEnd = true;
         }

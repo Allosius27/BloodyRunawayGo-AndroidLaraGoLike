@@ -26,6 +26,8 @@ public class SelectLevelPanel : MonoBehaviour
 
     public MainMenu mainMenu { get; set; }
 
+    public List<UnlockLevel> UnlockLevels => unlockLevels;
+
     #endregion
 
     #region UnityInspector
@@ -55,6 +57,8 @@ public class SelectLevelPanel : MonoBehaviour
             _levelButton.ImgLevel.sprite = unlockLevels[i].levelData.sceneImg;
 
             _levelButton.selectLevelPanel = this;
+
+            _levelButton.isUnlocked = unlockLevels[i].isUnlocked;
         }
     }
 

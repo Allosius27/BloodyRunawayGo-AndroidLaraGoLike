@@ -12,6 +12,7 @@ public class ModuleBehaviour : GameplayElement
 
     private Vector3? _anchorPos = null;
 
+
     #endregion
 
     #region Properties
@@ -29,6 +30,7 @@ public class ModuleBehaviour : GameplayElement
     public bool rightDirectionLocked { get; set; }
     public bool leftDirectionLocked { get; set; }
 
+
     #endregion
 
     #region UnityInspector
@@ -37,10 +39,14 @@ public class ModuleBehaviour : GameplayElement
 
     [HideInInspector] [SerializeField] private bool _topAnchor = true;
 
+    [SerializeField] private bool isLastModule;
+
+
     [SerializeField] private float detectionRangeValue = 10.0f;
 
     [Header("Anchors")] 
     [SerializeField] private GameObject _anchorSprite = null;
+    [SerializeField] private GameObject _endLevelAnchorSprite = null;
 
     public List<ModuleBehaviour> _neighbors = new List<ModuleBehaviour>(6);
 
@@ -70,6 +76,27 @@ public class ModuleBehaviour : GameplayElement
     public virtual void Start()
     {
         RegisterNeighbors();
+
+        //GetIsLastModule();
+    }
+
+    [Button(ButtonSizes.Medium)]
+    public void SetIsLastModule()
+    {
+        isLastModule = !isLastModule;
+        GetIsLastModule();
+    }
+
+    public void GetIsLastModule()
+    {
+        if (isLastModule)
+        {
+            _endLevelAnchorSprite.SetActive(true);
+        }
+        else
+        {
+            _endLevelAnchorSprite.SetActive(false);
+        }
     }
 
     [Button(ButtonSizes.Medium)]
@@ -154,6 +181,13 @@ public class ModuleBehaviour : GameplayElement
         }
 
         GameCore.Instance.UpdateEnemiesBehaviour();
+
+        if(isLastModule)
+        {
+            Debug.Log("Level Completed !");
+
+            GameCore.Instance.LevelCompleted();
+        }
     }
 
     public override void Activate()
