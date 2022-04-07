@@ -41,6 +41,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public ModuleBehaviour CurrModule => _currModule;
 
+    public Animator Animator => animator;
+
     #endregion
 
     #region UnityInspector
@@ -48,6 +50,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _movementSpeed = 5f;
 
     [SerializeField] private Button _upMovementButton = null;
+
+    [SerializeField] private Animator animator;
 
     #endregion
 
@@ -226,6 +230,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Move", true);
             transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
         }
     }
@@ -260,6 +265,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnMovementEnd()
     {
+        animator.SetBool("Move", false);
+
         _targetPos = null;
         _movementDir = MovementDirection.None;
 
@@ -405,6 +412,50 @@ public class PlayerMovementController : MonoBehaviour
         {
             _upMovementButton.gameObject.SetActive(false);
         }
+    }
+
+    public void PlayerAttack(Enemy enemy)
+    {
+        animator.SetTrigger("Attack");
+
+        StartCoroutine(CoroutinePlayerAttack(enemy));
+    }
+
+    IEnumerator CoroutinePlayerAttack(Enemy enemy)
+    {
+        canMove = false;
+
+        //Fetch the current Animation clip information for the base layer
+        AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //Access the current length of the clip
+        float m_CurrentClipLength = m_CurrentClipInfo[0].clip.length;
+
+        yield return new WaitForSeconds(m_CurrentClipLength);
+
+        canMove = true;
+
+        enemy.Death();
+    }
+
+    public void PlayerDamage()
+    {
+        animator.SetTrigger("Death");
+
+        StartCoroutine(CoroutinePlayerDamage());
+    }
+
+    IEnumerator CoroutinePlayerDamage()
+    {
+        canMove = false;
+
+        //Fetch the current Animation clip information for the base layer
+        AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //Access the current length of the clip
+        float m_CurrentClipLength = m_CurrentClipInfo[0].clip.length;
+
+        yield return new WaitForSeconds(m_CurrentClipLength);
+
+        GameCore.Instance.GameOver();
     }
 }
 #endregion

@@ -178,10 +178,15 @@ public class Enemy : InteractibleObject
     {
         if(SetCurrentRangeModule() && canDied)
         {
-            anim.SetTrigger("Death");
-            GameCore.Instance.Enemies.Remove(this);
-            this.enabled = false;
+            GameCore.Instance.Player.PlayerAttack(this);
         }
+    }
+
+    public void Death()
+    {
+        anim.SetTrigger("Death");
+        GameCore.Instance.Enemies.Remove(this);
+        this.enabled = false;
     }
 
     private int SortByDistance(Entity a, Entity b)

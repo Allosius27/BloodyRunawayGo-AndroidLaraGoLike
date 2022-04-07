@@ -4861,11 +4861,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1066125693}
     m_Modifications:
-    - target: {fileID: 3672890323878883694, guid: 47917c6336379b54ca78969ee6361fb2,
-        type: 3}
-      propertyPath: _batMovementsCountText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3672890324242052657, guid: 47917c6336379b54ca78969ee6361fb2,
         type: 3}
       propertyPath: m_RootOrder
@@ -4920,11 +4915,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3672890324242052658, guid: 47917c6336379b54ca78969ee6361fb2,
-        type: 3}
-      propertyPath: _upMovementButton
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3672890324242052668, guid: 47917c6336379b54ca78969ee6361fb2,
         type: 3}

@@ -48,7 +48,7 @@ public class BulletEnemy : MonoBehaviour
         PlayerMovementController player = other.GetComponent<PlayerMovementController>();
         if (player != null)
         {
-            GameCore.Instance.GameOver();
+            player.PlayerDamage();
 
             Destroy(gameObject);
         }
