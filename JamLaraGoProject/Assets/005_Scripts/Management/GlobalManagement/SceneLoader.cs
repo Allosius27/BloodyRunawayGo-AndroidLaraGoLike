@@ -51,6 +51,7 @@ public class SceneLoader : AllosiusDev.Singleton<SceneLoader>
         Debug.Log("StopAllAmbients");
 
         GameCore.ResetInstance();
+        GameCanvasManager.ResetInstance();
 
         AsyncOperation operation = SceneManager.LoadSceneAsync((int)(object)_sceneData.sceneToLoad);
 

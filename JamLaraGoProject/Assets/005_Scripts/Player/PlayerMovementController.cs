@@ -55,6 +55,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
+        if (_upMovementButton == null)
+        {
+            _upMovementButton = GameCanvasManager.Instance.UpMovementButton;
+        }
+
         _batMovement = this.gameObject.GetComponent<BatMovement>();
     }
 
@@ -214,7 +219,7 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 direction = _targetPos.Value - transform.position;
         float moveStep = _movementSpeed * Time.deltaTime;
 
-        if(moveStep > direction.sqrMagnitude)
+        if (moveStep > direction.sqrMagnitude)
         {
             transform.DOMove(_targetPos.Value, 0.125f);
             OnMovementEnd();
@@ -234,21 +239,21 @@ public class PlayerMovementController : MonoBehaviour
 
             if (value == 0)
             {
-                transform.DORotate(new Vector3(0, 0, 0),0.2f);
+                transform.DORotate(new Vector3(0, 0, 0), 0.2f);
             }
-            else if(value == 1)
+            else if (value == 1)
             {
-                transform.DORotate(new Vector3(0, 180),0.2f);
+                transform.DORotate(new Vector3(0, 180), 0.2f);
             }
-            else if(value == 2)
+            else if (value == 2)
             {
-                transform.DORotate(new Vector3(0, 90, 0),0.2f);
+                transform.DORotate(new Vector3(0, 90, 0), 0.2f);
             }
-            else if(value == 3)
+            else if (value == 3)
             {
-                transform.DORotate(new Vector3(0, 270, 0),0.2f);
+                transform.DORotate(new Vector3(0, 270, 0), 0.2f);
             }
-            
+
             SetTargetPos(_possibleTargets[value].Value);
         }
     }
@@ -271,7 +276,7 @@ public class PlayerMovementController : MonoBehaviour
             _isInDownMovement = false;
             upDownBlock = null;
         }
-        
+
         CheckForCurrModule();
     }
 
@@ -350,15 +355,15 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (upDownBlock == null) return;
 
-        Vector3 target = Vector3.zero;;
-        
+        Vector3 target = Vector3.zero; ;
+
         if (upDownBlock == upDownMovement.UpBlock)
         {
             _isInUpMovement = true;
-            target = new Vector3(transform.position.x, upDownBlock.transform.position.y, transform.position.z); 
+            target = new Vector3(transform.position.x, upDownBlock.transform.position.y, transform.position.z);
             _batMovement.ChangeBatMovementCount(-upDownMovement.GetMovementsCost());
         }
-        else if(upDownBlock == upDownMovement.DownBlock)
+        else if (upDownBlock == upDownMovement.DownBlock)
         {
             _isInDownMovement = true;
             target = new Vector3(upDownBlock.transform.position.x, transform.position.y, upDownBlock.transform.position.z);
@@ -374,19 +379,19 @@ public class PlayerMovementController : MonoBehaviour
         if (other.gameObject.GetComponentInParent<UpDownMovementObjectBehaviour>())
         {
             upDownMovement = other.gameObject.GetComponentInParent<UpDownMovementObjectBehaviour>();
-            
+
             if (other.gameObject == upDownMovement.UpBlock)
             {
                 upDownBlock = upDownMovement.DownBlock;
                 _upMovementButton.transform.eulerAngles = new Vector3(0, 0, 180f);
                 _upMovementButton.gameObject.SetActive(true);
             }
-            else if(other.gameObject == upDownMovement.DownBlock)
+            else if (other.gameObject == upDownMovement.DownBlock)
             {
                 upDownBlock = upDownMovement.UpBlock;
                 _upMovementButton.transform.eulerAngles = new Vector3(0, 0, 0f);
             }
-            
+
             if (upDownMovement.GetMovementsCost() <= _batMovement.GetCurrBatMovement())
             {
                 _upMovementButton.gameObject.SetActive(true);

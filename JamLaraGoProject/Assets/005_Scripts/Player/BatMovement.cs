@@ -13,6 +13,11 @@ public class BatMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (_batMovementsCountText == null)
+        {
+            _batMovementsCountText = GameCanvasManager.Instance.BatMovementsCountText;
+        }
+
         _batMovementsCountText.text = _currBatMovement.ToString();
     }
 
@@ -20,7 +25,7 @@ public class BatMovement : MonoBehaviour
     {
         return _currBatMovement;
     }
-    
+
     public void ChangeBatMovementCount(int value)
     {
         _currBatMovement += value;
