@@ -20,6 +20,8 @@ public class SelectLevelPanel : MonoBehaviour
     private int currentLevelSelectedIndex;
     private LevelButton currentLevelButtonActive;
 
+    private List<LevelButton> levelsButtons = new List<LevelButton>();
+
     #endregion
 
     #region Properties
@@ -27,6 +29,8 @@ public class SelectLevelPanel : MonoBehaviour
     public MainMenu mainMenu { get; set; }
 
     public List<UnlockLevel> UnlockLevels => unlockLevels;
+
+    public List<LevelButton> LevelsButtons => levelsButtons;
 
     #endregion
 
@@ -58,8 +62,16 @@ public class SelectLevelPanel : MonoBehaviour
 
             _levelButton.selectLevelPanel = this;
 
-            _levelButton.isUnlocked = unlockLevels[i].isUnlocked;
+            SetLevelButtonState(_levelButton, unlockLevels[i]);
+
+            levelsButtons.Add(_levelButton);
         }
+    }
+
+    public void SetLevelButtonState(LevelButton levelButton, UnlockLevel unlockLevel)
+    {
+        levelButton.isUnlocked = unlockLevel.isUnlocked;
+        levelButton.SetButtonState();
     }
 
     public void SetCurrentLevelSelected(LevelButton levelButton)
@@ -87,7 +99,6 @@ public class SelectLevelPanel : MonoBehaviour
             }
             else if(PauseMenu.gameIsPaused)
             {
-                PauseMenu.canPause = false;
                 UICanvasManager.Instance.pauseMenu.Resume();
                 AllosiusDev.AudioManager.StopAllMusics();
                 SceneLoader.Instance.ActiveLoadingScreen(unlockLevels[currentLevelSelectedIndex].levelData, 1.0f);

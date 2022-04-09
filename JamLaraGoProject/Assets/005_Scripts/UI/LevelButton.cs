@@ -52,7 +52,7 @@ public class LevelButton : MonoBehaviour
     {
         activeObj.SetActive(false);
 
-        SetButtonState();
+        //SetButtonState();
     }
 
     public void SetButtonState()

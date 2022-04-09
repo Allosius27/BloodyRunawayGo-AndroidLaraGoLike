@@ -47,6 +47,13 @@ public class CrackedSlab : ModuleBehaviour
 
         graphics.GetComponent<MeshFilter>().mesh = crackedSlabData.statesMeshes[currentDamage];
 
+        
+    }
+
+    public override void CheckCurrentPlayerModule(ModuleBehaviour playerModule)
+    {
+        base.CheckCurrentPlayerModule(playerModule);
+
         if (currentDamage >= maxDurability)
         {
             currentDamage = maxDurability;
@@ -58,6 +65,8 @@ public class CrackedSlab : ModuleBehaviour
             GameCore.Instance.Player.canMove = false;
         }
     }
+
+
 
     #endregion
 }

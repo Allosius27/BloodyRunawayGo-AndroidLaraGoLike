@@ -63,6 +63,7 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
                 if (nextLevelData == UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i].levelData)
                 {
                     UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i].isUnlocked = true;
+                    UICanvasManager.Instance.SelectLevelPanel.SetLevelButtonState(UICanvasManager.Instance.SelectLevelPanel.LevelsButtons[i], UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i]);
                 }
             }
 

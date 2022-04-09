@@ -163,7 +163,7 @@ public class ModuleBehaviour : GameplayElement
 
     }
 
-    public void CheckCurrentPlayerModule(ModuleBehaviour playerModule)
+    public virtual void CheckCurrentPlayerModule(ModuleBehaviour playerModule)
     {
         if(playerModule != this)
         {

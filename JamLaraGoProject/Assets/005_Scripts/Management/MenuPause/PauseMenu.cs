@@ -45,6 +45,9 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetButtonDown("Escape"))
         {
             MenuPause();
+
+            Debug.Log(canPause);
+            Debug.Log(gameIsPaused);
         }
     }
 
@@ -78,6 +81,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         settingsMenu.SetActive(false);
+        selectLevelPanel.gameObject.SetActive(false);
 
         Time.timeScale = 1;
 

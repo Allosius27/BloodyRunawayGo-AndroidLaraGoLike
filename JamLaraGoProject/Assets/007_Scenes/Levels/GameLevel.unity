@@ -4110,6 +4110,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1112204848}
     m_Modifications:
+    - target: {fileID: 1593708943041483491, guid: e18c54061fbfc344da1590d38f7d7d4b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1550514412580984892, guid: 0d66f060271930848aa8d6a8c568a142,
+        type: 3}
+    - target: {fileID: 3096777724579448828, guid: e18c54061fbfc344da1590d38f7d7d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4344488535107553750, guid: e18c54061fbfc344da1590d38f7d7d4b,
         type: 3}
       propertyPath: _neighbors.Array.data[1]

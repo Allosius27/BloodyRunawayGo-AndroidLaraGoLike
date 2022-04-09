@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
@@ -292,10 +291,10 @@ public class PlayerMovementController : MonoBehaviour
         if (_currModule != null)
         {
             _currModule.CheckCurrentPlayerModule(_currModule);
+            _currModule.OnWalked();
         }
 
         _currModule = moduleBehaviour;
-        _currModule.OnWalked();
         Debug.Log("new module : " + _currModule.name);
 
         _currModule.CheckCurrentPlayerModule(_currModule);
