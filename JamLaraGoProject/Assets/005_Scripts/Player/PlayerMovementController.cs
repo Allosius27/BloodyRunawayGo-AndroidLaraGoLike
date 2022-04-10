@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -51,6 +52,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Button _upMovementButton = null;
 
     [SerializeField] private Animator animator;
+
+    [SerializeField] private PlayerBatSwitchController _playerBatSwitch;
 
     #endregion
 
@@ -239,6 +242,12 @@ public class PlayerMovementController : MonoBehaviour
         if (_possibleTargets[value] != null)
         {
             _batMovement.ChangeBatMovementCount(-_batMovementsCosts[value]);
+
+            if (_batMovementsCosts[value] > 0)
+            {
+                _playerBatSwitch.ChangeMesh(true);
+            }
+            
             _batMovementsCosts = new int[4];
 
             if (value == 0)
@@ -269,11 +278,15 @@ public class PlayerMovementController : MonoBehaviour
         _targetPos = null;
         _movementDir = MovementDirection.None;
 
+        _playerBatSwitch.ChangeMesh(false);
+        
         if (_isInUpMovement && upDownBlock != null)
         {
             _targetPos = upDownBlock.transform.position;
             _isInUpMovement = false;
             upDownBlock = null;
+
+            _playerBatSwitch.ChangeMesh(true);
         }
 
         if (_isInDownMovement && upDownBlock != null)
@@ -281,6 +294,7 @@ public class PlayerMovementController : MonoBehaviour
             _targetPos = upDownBlock.transform.position;
             _isInDownMovement = false;
             upDownBlock = null;
+            _playerBatSwitch.ChangeMesh(true);
         }
 
         CheckForCurrModule();
@@ -361,6 +375,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (upDownBlock == null) return;
 
+        _playerBatSwitch.ChangeMesh(true);
+        
         Vector3 target = Vector3.zero; ;
 
         if (upDownBlock == upDownMovement.UpBlock)
