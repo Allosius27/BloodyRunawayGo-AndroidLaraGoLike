@@ -22,6 +22,8 @@ public class Enemy : InteractibleObject
 
     public ModuleBehaviour ModuleAssociated => moduleAssociated;
 
+    public BatMovement batMovement;
+
     #endregion
 
     #region UnityInspector
@@ -34,6 +36,8 @@ public class Enemy : InteractibleObject
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Animator anim;
+
+    [SerializeField] private int _batAmount = 3;
 
     [Space]
 
@@ -194,6 +198,7 @@ public class Enemy : InteractibleObject
         anim.SetTrigger("Death");
         GameCore.Instance.Enemies.Remove(this);
         this.enabled = false;
+        batMovement.ChangeBatMovementCount(_batAmount);
     }
 
     private int SortByDistance(Entity a, Entity b)
