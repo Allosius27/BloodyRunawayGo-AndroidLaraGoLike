@@ -10,11 +10,7 @@ public class PlayerBatSwitchController : MonoBehaviour
     [SerializeField] private ParticleSystem _changingFx;
 
 
-    private bool check = true;
-    private void Start()
-    {
-        ChangeMesh(false);
-    }
+    private bool check = false;
 
     public void ChangeMesh(bool isBat)
     {
