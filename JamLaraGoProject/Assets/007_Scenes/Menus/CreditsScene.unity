@@ -285,8 +285,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Queroix Yanis : Programmer'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -310,8 +311,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -419,8 +420,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bouillard Elie - Programmer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -444,8 +446,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -646,8 +648,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Coeugniet F\xE9lix : Game Artist"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -671,8 +674,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -780,8 +783,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Choquet In\xE8s : Game Designer"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -805,8 +809,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1016,8 +1020,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 263a54a8275966f45acfd4607ead9bcd, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: d2299ddacffe65348b4a6f636c6296c8, type: 3}
+    m_FontSize: 52
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1095,12 +1099,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 263a54a8275966f45acfd4607ead9bcd, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: d2299ddacffe65348b4a6f636c6296c8, type: 3}
+    m_FontSize: 52
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 82
+    m_MaxSize: 168
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1258,8 +1262,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Moktefi Sonia : Game Artist'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1283,8 +1288,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1508,8 +1513,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Decouture Nicolas : Tech Artist'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1533,8 +1539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1642,8 +1648,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1776,8 +1783,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Dubar Romain : Game Designer'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1801,8 +1809,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1910,8 +1918,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Bruy\xE8re Alice : Game Artist"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 172e2540b2bd1734bae1a51db37f325a, type: 2}
+  m_sharedMaterial: {fileID: 1320635153757599040, guid: 172e2540b2bd1734bae1a51db37f325a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1935,8 +1944,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.31
-  m_fontSizeBase: 44.31
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

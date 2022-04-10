@@ -28,6 +28,10 @@ public class BaseLever : InteractibleObject
     [SerializeField] UnityEvent onActivation;
     [SerializeField] UnityEvent onDeactivation;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData useLeverFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -55,6 +59,7 @@ public class BaseLever : InteractibleObject
         if (_isActive == false)
         {
             Debug.Log("On Activation");
+            StartCoroutine(useLeverFeedbackData.CoroutineExecute(this.gameObject));
             OnActivation.Invoke();
         }
         else

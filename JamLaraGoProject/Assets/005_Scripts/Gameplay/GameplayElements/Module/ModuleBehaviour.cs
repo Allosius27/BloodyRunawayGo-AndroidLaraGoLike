@@ -31,6 +31,9 @@ public class ModuleBehaviour : GameplayElement
     public bool leftDirectionLocked { get; set; }
 
 
+    public AllosiusDev.FeedbacksData PlayerLightBurnFeedbackData => playerLightBurnFeedbackData;
+
+
     #endregion
 
     #region UnityInspector
@@ -49,6 +52,10 @@ public class ModuleBehaviour : GameplayElement
     [SerializeField] private GameObject _endLevelAnchorSprite = null;
 
     public List<ModuleBehaviour> _neighbors = new List<ModuleBehaviour>(6);
+
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData playerLightBurnFeedbackData;
 
     #endregion
 
@@ -177,6 +184,7 @@ public class ModuleBehaviour : GameplayElement
 
         if (isLighting)
         {
+            StartCoroutine(playerLightBurnFeedbackData.CoroutineExecute(this.gameObject));
             GameCore.Instance.GameOver();
         }
 

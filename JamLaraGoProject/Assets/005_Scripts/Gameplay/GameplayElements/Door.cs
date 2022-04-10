@@ -28,6 +28,11 @@ public class Door : GameplayElement
     [SerializeField] private Transform moduleDetectPointFront;
     [SerializeField] private Transform moduleDetectPointBehind;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData openDoorFeedbackData;
+    [SerializeField] private AllosiusDev.FeedbacksData closeDoorFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -98,11 +103,15 @@ public class Door : GameplayElement
 
     public override void Activate()
     {
+        StartCoroutine(openDoorFeedbackData.CoroutineExecute(this.gameObject));
+
         SetDoorState(true);
     }
 
     public override void Deactivate()
     {
+        StartCoroutine(closeDoorFeedbackData.CoroutineExecute(this.gameObject));
+
         SetDoorState(false);
     }
 

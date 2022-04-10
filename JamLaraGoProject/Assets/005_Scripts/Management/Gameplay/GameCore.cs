@@ -27,6 +27,13 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
     [SerializeField] private SceneData currentLevelData;
     [SerializeField] private SceneData nextLevelData;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.AudioData mainMusicFeedbackData;
+
+    [SerializeField] private AllosiusDev.FeedbacksData jingleLoseFeedbackData;
+    [SerializeField] private AllosiusDev.FeedbacksData jingleWinFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -44,11 +51,17 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
         player = FindObjectOfType<PlayerMovementController>();
     }
 
+    private void Start()
+    {
+        AllosiusDev.AudioManager.Play(mainMusicFeedbackData.sound);
+    }
+
 
     public void GameOver()
     {
         if (gameEnd == false)
         {
+            StartCoroutine(jingleLoseFeedbackData.CoroutineExecute(this.gameObject));
             SceneLoader.Instance.ActiveLoadingScreen(currentLevelData, 1.0f);
             gameEnd = true;
         }
@@ -58,6 +71,8 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
     {
         if (gameEnd == false)
         {
+            StartCoroutine(jingleWinFeedbackData.CoroutineExecute(this.gameObject));
+
             for (int i = 0; i < UICanvasManager.Instance.SelectLevelPanel.UnlockLevels.Count; i++)
             {
                 if (nextLevelData == UICanvasManager.Instance.SelectLevelPanel.UnlockLevels[i].levelData)
