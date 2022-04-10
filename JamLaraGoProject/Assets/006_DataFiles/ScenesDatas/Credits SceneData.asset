@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbfce2fa37ac1c74f98bec1ccf3c222f, type: 3}
-  m_Name: GameLevel SceneData
+  m_Name: Credits SceneData
   m_EditorClassIdentifier: 
-  sceneToLoad: 2
-  sceneName: Level 1
-  sceneImg: {fileID: 21300000, guid: 42bbb14a48dc3794d90b395ec302de0d, type: 3}
+  sceneToLoad: 5
+  sceneName: Credits
+  sceneImg: {fileID: 0}

@@ -55,6 +55,11 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private PlayerBatSwitchController _playerBatSwitch;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData playerTakeDamageFeedbackData;
+    [SerializeField] private AllosiusDev.FeedbacksData playerDeathFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -454,6 +459,9 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDamage()
     {
+        StartCoroutine(playerTakeDamageFeedbackData.CoroutineExecute(this.gameObject));
+        StartCoroutine(playerDeathFeedbackData.CoroutineExecute(this.gameObject));
+
         animator.SetTrigger("Death");
 
         StartCoroutine(CoroutinePlayerDamage());

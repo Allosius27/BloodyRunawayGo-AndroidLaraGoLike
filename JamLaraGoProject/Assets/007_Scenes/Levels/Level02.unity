@@ -495,6 +495,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1182214891805140145, guid: 5a685d030df0e7149a59539cd4c293bd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 46f503cf5cb5ef941b3fdcd1a1dabc7c,
+        type: 3}
+    - target: {fileID: 1182214891805140145, guid: 5a685d030df0e7149a59539cd4c293bd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.16470587
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182214891805140145, guid: 5a685d030df0e7149a59539cd4c293bd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.56993055
+      objectReference: {fileID: 0}
     - target: {fileID: 1551509603308960199, guid: 5a685d030df0e7149a59539cd4c293bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -594,6 +610,16 @@ PrefabInstance:
         type: 3}
       propertyPath: isLastModule
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452516889980095182, guid: 5a685d030df0e7149a59539cd4c293bd,
+        type: 3}
+      propertyPath: isLastModule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505983692398179554, guid: 5a685d030df0e7149a59539cd4c293bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8505983693739508215, guid: 5a685d030df0e7149a59539cd4c293bd,
         type: 3}
