@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sfx_EnemyDeath AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 458aac2917786fe4eaa80b1aa5df1aa3, type: 3}
     parameters:
       typeSound: 0
-      volume: 0.29
-      volume3d: 0.37
+      volume: 1.01
+      volume3d: 0.78
       pitch: 1
       loop: 0
       priority: 0

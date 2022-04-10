@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Sfx_SlabDestroy
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3dbdea6a25eb16145bbb898b5f4d3144, type: 3}
     parameters:
       typeSound: 0
-      volume: 0.29
+      volume: 0.43
       volume3d: 0.37
-      pitch: 1
+      pitch: 1.22
       loop: 0
       priority: 0
       spacialBlend: 0

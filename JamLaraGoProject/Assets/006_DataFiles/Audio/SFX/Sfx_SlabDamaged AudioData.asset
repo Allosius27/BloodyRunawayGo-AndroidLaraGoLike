@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Sfx_SlabDamaged AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 868753e4d20149740b7369a51e310a1a, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29
       volume3d: 0.37
-      pitch: 1
+      pitch: 3
       loop: 0
       priority: 0
       spacialBlend: 0

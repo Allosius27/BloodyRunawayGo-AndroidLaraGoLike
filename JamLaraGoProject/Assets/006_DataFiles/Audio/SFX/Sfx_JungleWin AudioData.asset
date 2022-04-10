@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_JungleWin AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5b8ab69838704fc4697a9226f2b0cf35, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

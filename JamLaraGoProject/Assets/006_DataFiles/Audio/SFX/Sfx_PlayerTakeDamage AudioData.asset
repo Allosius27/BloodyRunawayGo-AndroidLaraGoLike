@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_PlayerTakeDamage AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: a2e9403fd1a2c4245a055ede948781ca, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

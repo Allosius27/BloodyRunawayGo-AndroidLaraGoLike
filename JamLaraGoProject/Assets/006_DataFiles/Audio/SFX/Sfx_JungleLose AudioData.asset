@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_JungleLose AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5500769f4b901a947b158180ff8d282c, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

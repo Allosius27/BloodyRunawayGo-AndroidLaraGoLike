@@ -4,5 +4,6 @@
     Level,
     Level02,
     Level03,
+    Level04,
     CreditsScene
 }

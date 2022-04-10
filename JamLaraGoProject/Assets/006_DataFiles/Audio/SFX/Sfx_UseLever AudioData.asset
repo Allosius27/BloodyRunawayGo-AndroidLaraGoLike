@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_UseLever AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0611a94d2db6dfa4d88e70322c8f764d, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

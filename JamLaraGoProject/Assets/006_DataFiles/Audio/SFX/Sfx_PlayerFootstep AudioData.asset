@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_PlayerFootstep AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 00b8b85a34db3a64daa4d98b55ab3ed4, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

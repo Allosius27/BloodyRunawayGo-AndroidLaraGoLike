@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_PlayerShapeshifting
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 12aeb6cb365353547a3a703353694d0d, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_EnemyTakeDamage
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0096298f17eb28a4b8047ffd1a332489, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29

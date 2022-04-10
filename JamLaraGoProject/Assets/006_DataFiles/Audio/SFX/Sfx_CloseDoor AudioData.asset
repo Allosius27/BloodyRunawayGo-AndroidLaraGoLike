@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sfx_CloseDoor AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: a3f3d496d0291a240b9a3497944ac257, type: 3}
     parameters:
       typeSound: 0
-      volume: 0.29
-      volume3d: 0.37
+      volume: 0.2
+      volume3d: 0.44
       pitch: 1
       loop: 0
       priority: 0

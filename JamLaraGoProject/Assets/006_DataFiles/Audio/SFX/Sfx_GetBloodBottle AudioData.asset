@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sfx_GetBloodBottle AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e3641056f49a81f41b7b70538ccfc4b2, type: 3}
     parameters:
       typeSound: 0
       volume: 0.29
