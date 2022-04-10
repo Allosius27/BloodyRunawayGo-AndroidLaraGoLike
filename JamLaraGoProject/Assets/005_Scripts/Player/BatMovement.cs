@@ -7,9 +7,28 @@ using UnityEngine.Serialization;
 
 public class BatMovement : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _batMovementsCountText = null;
+    #region Fields
 
     private int _currBatMovement = 0;
+
+    #endregion
+
+    #region Properties
+
+    public AllosiusDev.FeedbacksData GetBloodBottleFeedbackData => getBloodBottleFeedbackData;
+
+    #endregion
+
+    #region UnityInspector
+
+    [SerializeField] private TMP_Text _batMovementsCountText = null;
+
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData getBloodBottleFeedbackData;
+
+    #endregion
+
 
     private void Awake()
     {
@@ -24,6 +43,11 @@ public class BatMovement : MonoBehaviour
     public int GetCurrBatMovement()
     {
         return _currBatMovement;
+    }
+
+    public void PlayGetBloodBottleFeedback()
+    {
+        StartCoroutine(getBloodBottleFeedbackData.CoroutineExecute(this.gameObject));
     }
 
     public void ChangeBatMovementCount(int value)

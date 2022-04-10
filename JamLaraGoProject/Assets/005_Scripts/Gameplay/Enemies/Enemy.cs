@@ -35,6 +35,11 @@ public class Enemy : InteractibleObject
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Animator anim;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData takeDamageFeedbackData;
+    [SerializeField] private AllosiusDev.FeedbacksData playerDeathFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -184,6 +189,8 @@ public class Enemy : InteractibleObject
 
     public void Death()
     {
+        StartCoroutine(takeDamageFeedbackData.CoroutineExecute(this.gameObject));
+        StartCoroutine(playerDeathFeedbackData.CoroutineExecute(this.gameObject));
         anim.SetTrigger("Death");
         GameCore.Instance.Enemies.Remove(this);
         this.enabled = false;

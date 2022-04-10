@@ -23,6 +23,10 @@ public class CrackedSlab : ModuleBehaviour
 
     [SerializeField] private CrackedSlabData crackedSlabData;
 
+    [Space]
+
+    [SerializeField] private AllosiusDev.FeedbacksData damagedCrackedSlabFeedbackData;
+
     #endregion
 
     #region Behaviour
@@ -47,7 +51,7 @@ public class CrackedSlab : ModuleBehaviour
 
         graphics.GetComponent<MeshFilter>().mesh = crackedSlabData.statesMeshes[currentDamage];
 
-        
+        StartCoroutine(damagedCrackedSlabFeedbackData.CoroutineExecute(this.gameObject));
     }
 
     public override void CheckCurrentPlayerModule(ModuleBehaviour playerModule)
