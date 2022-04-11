@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R58R92M5E9F",
         "name": "com.DefaultCompany.LaragoMobile",
-        "processId": 22544,
+        "processId": 17063,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -17,73 +17,37 @@
         {
             "deviceId": "R58R92M5E9F",
             "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 28819,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 29195,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 29850,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 30308,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 30626,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 30946,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 31352,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 31801,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
-            "processId": 22139,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R92M5E9F",
-            "name": "com.DefaultCompany.LaragoMobile",
             "processId": 13510,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R58R92M5E9F",
             "name": "com.DefaultCompany.LaragoMobile",
             "processId": 9491,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R58R92M5E9F",
             "name": "com.DefaultCompany.LaragoMobile",
             "processId": 22544,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R92M5E9F",
+            "name": "com.DefaultCompany.LaragoMobile",
+            "processId": 27654,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R92M5E9F",
+            "name": "com.DefaultCompany.LaragoMobile",
+            "processId": 10959,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R92M5E9F",
+            "name": "com.DefaultCompany.LaragoMobile",
+            "processId": 17063,
             "exited": false
         }
     ],

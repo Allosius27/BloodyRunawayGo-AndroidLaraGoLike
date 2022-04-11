@@ -104,7 +104,7 @@ public class Enemy : InteractibleObject
         hits = Physics.RaycastAll(rangePoint.position, rangePoint.TransformDirection(Vector3.forward), m_DetectorSize.z * 2);
         for (int i = 0; i < hits.Length; i++)
         {
-            Debug.Log("Did hit " + hits[i].collider.name);
+            //Debug.Log("Did hit " + hits[i].collider.name);
             Entity entity = hits[i].collider.GetComponent<Entity>();
             if (entity != null)
             {
@@ -125,7 +125,7 @@ public class Enemy : InteractibleObject
         {
             if(listHits[i].IsObstacle == Entity.isObstacle.IsObstacle)
             {
-                Debug.Log("Has Obstacle");
+                //Debug.Log("Has Obstacle");
                 return;
             }
 

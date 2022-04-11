@@ -14,6 +14,7 @@ public class PlayerBatSwitchController : MonoBehaviour
 
     [SerializeField] private AllosiusDev.FeedbacksData shapeshiftingFeedbacksData;
 
+    public bool batActive { get; set; }
 
     private bool check = false;
 
@@ -24,6 +25,11 @@ public class PlayerBatSwitchController : MonoBehaviour
         
         _playerMesh.SetActive(!isBat);
         _batMesh.SetActive(isBat);
+
+        if (isBat == true)
+        {
+            batActive = true;
+        }
 
         StartCoroutine(shapeshiftingFeedbacksData.CoroutineExecute(this.gameObject));
 

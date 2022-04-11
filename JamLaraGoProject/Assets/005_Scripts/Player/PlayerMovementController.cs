@@ -115,6 +115,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_batMovementsCosts[0] <= currBatMovement)
             {
                 SetMovement(0);
+                Debug.Log("Movement 0");
             }
 
         }
@@ -123,6 +124,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_batMovementsCosts[1] <= currBatMovement)
             {
                 SetMovement(1);
+                Debug.Log("Movement 1");
             }
         }
         else if (_movementDir == MovementDirection.Right && _currModule.rightDirectionLocked == false)
@@ -130,6 +132,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_batMovementsCosts[2] <= currBatMovement)
             {
                 SetMovement(2);
+                Debug.Log("Movement 2");
             }
         }
         else if (_movementDir == MovementDirection.Left && _currModule.leftDirectionLocked == false)
@@ -137,6 +140,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_batMovementsCosts[3] <= currBatMovement)
             {
                 SetMovement(3);
+                Debug.Log("Movement 3");
             }
         }
     }
@@ -145,21 +149,41 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            if (_playerBatSwitch.batActive)
+            {
+                DebugCheckForCurrModule();
+                _playerBatSwitch.batActive = false;
+            }
             _movementDir = MovementDirection.Up;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+            if (_playerBatSwitch.batActive)
+            {
+                DebugCheckForCurrModule();
+                _playerBatSwitch.batActive = false;
+            }
             _movementDir = MovementDirection.Down;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
+            if (_playerBatSwitch.batActive)
+            {
+                DebugCheckForCurrModule();
+                _playerBatSwitch.batActive = false;
+            }
             _movementDir = MovementDirection.Right;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            if (_playerBatSwitch.batActive)
+            {
+                DebugCheckForCurrModule();
+                _playerBatSwitch.batActive = false;
+            }
             _movementDir = MovementDirection.Left;
         }
     }
@@ -200,24 +224,45 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     Debug.Log("RIGHT");
                     _movementDir = MovementDirection.Right;
+                    if (_playerBatSwitch.batActive)
+                    {
+                        DebugCheckForCurrModule();
+                        _playerBatSwitch.batActive = false;
+                    }
                 }
 
                 if (direction.x > 0 && direction.y < 0)
                 {
                     Debug.Log("DOWN");
                     _movementDir = MovementDirection.Down;
+                    if (_playerBatSwitch.batActive)
+                    {
+                        DebugCheckForCurrModule();
+                        _playerBatSwitch.batActive = false;
+                    }
                 }
 
                 if (direction.x < 0 && direction.y < 0)
                 {
                     Debug.Log("LEFT");
                     _movementDir = MovementDirection.Left;
+                    if(_playerBatSwitch.batActive)
+                    {
+                        DebugCheckForCurrModule();
+                        _playerBatSwitch.batActive = false;
+                    }
+
                 }
 
                 if (direction.x < 0 && direction.y > 0)
                 {
                     Debug.Log("UP");
                     _movementDir = MovementDirection.Up;
+                    if (_playerBatSwitch.batActive)
+                    {
+                        DebugCheckForCurrModule();
+                        _playerBatSwitch.batActive = false;
+                    }
                 }
             }
         }
@@ -237,6 +282,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
+            Debug.Log("Move");
             animator.SetBool("Move", true);
             transform.position = Vector3.MoveTowards(transform.position, _targetPos.Value, _movementSpeed * Time.deltaTime);
         }
@@ -278,13 +324,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnMovementEnd()
     {
+        Debug.Log("Movement End");
         animator.SetBool("Move", false);
 
         _targetPos = null;
         _movementDir = MovementDirection.None;
 
         _playerBatSwitch.ChangeMesh(false);
-        
+
         if (_isInUpMovement && upDownBlock != null)
         {
             _targetPos = upDownBlock.transform.position;
@@ -321,6 +368,14 @@ public class PlayerMovementController : MonoBehaviour
         SetPossibleTargetsPos();
     }
 
+    private void DebugSetCurrModule(ModuleBehaviour moduleBehaviour)
+    {
+        _currModule = moduleBehaviour;
+        Debug.Log("new module : " + _currModule.name);
+
+        SetPossibleTargetsPos();
+    }
+
     private void SetTargetPos(Vector3 pos)
     {
         _targetPos = pos;
@@ -329,6 +384,8 @@ public class PlayerMovementController : MonoBehaviour
     private void SetPossibleTargetsPos()
     {
         if (_currModule == null) { Debug.LogWarning("NoCurrentModule"); return; }
+
+        Debug.Log("SetPossibleTargetsPos");
 
         List<ModuleBehaviour> neighbors = _currModule.GetNeighbors();
 
@@ -375,10 +432,23 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private void DebugCheckForCurrModule()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
+        {
+            if (hit.collider.TryGetComponent<ModuleBehaviour>(out ModuleBehaviour module))
+            {
+                DebugSetCurrModule(module);
+            }
+        }
+    }
+
     GameObject upDownBlock = null;
     public void DoUpMovement()
     {
         if (upDownBlock == null) return;
+
+        Debug.Log("Do Up Movement");
 
         _playerBatSwitch.ChangeMesh(true);
         
@@ -398,6 +468,10 @@ public class PlayerMovementController : MonoBehaviour
         _targetPos = target;
 
         _upMovementButton.gameObject.SetActive(false);
+
+        Debug.Log("End Do Up Movement");
+
+        //CheckForCurrModule();
     }
 
     private UpDownMovementObjectBehaviour upDownMovement = null;
