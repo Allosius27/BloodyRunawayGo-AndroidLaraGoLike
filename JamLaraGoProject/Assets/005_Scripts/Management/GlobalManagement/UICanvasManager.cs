@@ -26,6 +26,8 @@ public class UICanvasManager : AllosiusDev.Singleton<UICanvasManager>
     private void Start()
     {
         pauseMenu = GetComponent<PauseMenu>();
+
+        selectLevelPanel.Init();
     }
 
     #endregion
