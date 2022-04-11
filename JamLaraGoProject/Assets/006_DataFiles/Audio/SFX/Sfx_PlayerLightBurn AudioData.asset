@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Sfx_PlayerLightBurn AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 69c805130ecca6c43b09d272f9695fe4, type: 3}
     parameters:
       typeSound: 0
-      volume: 0.29
+      volume: 0.45
       volume3d: 0.37
       pitch: 1
       loop: 0

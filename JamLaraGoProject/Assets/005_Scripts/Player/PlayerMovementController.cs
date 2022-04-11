@@ -43,11 +43,15 @@ public class PlayerMovementController : MonoBehaviour
 
     public Animator Animator => animator;
 
+    public float _movementSpeed { get; set; }
+
+
+    public Enemy currentEnemyTarget { get; protected set; }
+
     #endregion
 
     #region UnityInspector
 
-    [SerializeField] private float _movementSpeed = 5f;
 
     [SerializeField] private Button _upMovementButton = null;
 
@@ -81,6 +85,8 @@ public class PlayerMovementController : MonoBehaviour
         _upMovementButton.onClick.AddListener(DoUpMovement);
         _upMovementButton.gameObject.SetActive(false);
         CheckForCurrModule();
+
+        _movementSpeed = _playerBatSwitch.CharacterMoveSpeed;
     }
 
     private void Update()
@@ -510,12 +516,17 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerAttack(Enemy enemy)
     {
+        currentEnemyTarget = enemy;
+
+        transform.LookAt(enemy.transform);
+
         animator.SetTrigger("Attack");
 
-        StartCoroutine(CoroutinePlayerAttack(enemy));
+        canMove = false;
+        //StartCoroutine(CoroutinePlayerAttack(enemy));
     }
 
-    IEnumerator CoroutinePlayerAttack(Enemy enemy)
+    /*IEnumerator CoroutinePlayerAttack(Enemy enemy)
     {
         canMove = false;
 
@@ -528,22 +539,42 @@ public class PlayerMovementController : MonoBehaviour
 
         canMove = true;
 
+        Debug.Log("Enemy Damage");
+
         enemy.Death();
+    }*/
+
+    public void SendEnemyDamage()
+    {
+        canMove = true;
+
+        Debug.Log("Enemy Damage");
+
+        currentEnemyTarget.Death();
+
+        currentEnemyTarget = null;
     }
 
     public void PlayerDamage()
     {
-        Debug.Log("Player Death");
+        Debug.Log("Player Damage");
 
         StartCoroutine(playerTakeDamageFeedbackData.CoroutineExecute(this.gameObject));
+
+        PlayerDeath();
+    }
+
+    public void PlayerDeath()
+    {
         StartCoroutine(playerDeathFeedbackData.CoroutineExecute(this.gameObject));
 
         animator.SetTrigger("Death");
 
-        StartCoroutine(CoroutinePlayerDamage());
+        canMove = false;
+        //StartCoroutine(CoroutinePlayerDamage());
     }
 
-    IEnumerator CoroutinePlayerDamage()
+    /*IEnumerator CoroutinePlayerDamage()
     {
         canMove = false;
 
@@ -554,7 +585,8 @@ public class PlayerMovementController : MonoBehaviour
 
         yield return new WaitForSeconds(m_CurrentClipLength);
 
-        GameCore.Instance.GameOver();
-    }
+        if(GameCore.Instance != null && GameCore.Instance.gameEnd == false)
+            GameCore.Instance.GameOver();
+    }*/
 }
 #endregion

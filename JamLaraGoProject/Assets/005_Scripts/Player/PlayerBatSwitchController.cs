@@ -5,8 +5,30 @@ using UnityEngine;
 
 public class PlayerBatSwitchController : MonoBehaviour
 {
+    #region Fields
+
+    private PlayerMovementController playerMovementController;
+
+    private bool check = false;
+
+    #endregion
+
+    #region Properties
+    public bool batActive { get; set; }
+
+    public float CharacterMoveSpeed => characterMoveSpeed;
+
+    public float BatMoveSpeed => batMoveSpeed;
+
+    #endregion
+
+    #region UnityInspector
+
     [SerializeField] private GameObject _playerMesh;
     [SerializeField] private GameObject _batMesh;
+
+    [SerializeField] private float characterMoveSpeed;
+    [SerializeField] private float batMoveSpeed;
 
     [Space]
 
@@ -14,9 +36,14 @@ public class PlayerBatSwitchController : MonoBehaviour
 
     [SerializeField] private AllosiusDev.FeedbacksData shapeshiftingFeedbacksData;
 
-    public bool batActive { get; set; }
+    #endregion
 
-    private bool check = false;
+    #region Behaviour
+
+    private void Awake()
+    {
+        playerMovementController = GetComponent<PlayerMovementController>();
+    }
 
     public void ChangeMesh(bool isBat)
     {
@@ -29,6 +56,12 @@ public class PlayerBatSwitchController : MonoBehaviour
         if (isBat == true)
         {
             batActive = true;
+
+            playerMovementController._movementSpeed = batMoveSpeed;
+        }
+        else
+        {
+            playerMovementController._movementSpeed = characterMoveSpeed;
         }
 
         StartCoroutine(shapeshiftingFeedbacksData.CoroutineExecute(this.gameObject));
@@ -36,4 +69,6 @@ public class PlayerBatSwitchController : MonoBehaviour
         if (_changingFx == null) return;
         _changingFx.Play();
     }
+
+    #endregion
 }

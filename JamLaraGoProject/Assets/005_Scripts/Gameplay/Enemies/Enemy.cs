@@ -24,6 +24,11 @@ public class Enemy : InteractibleObject
 
     public ModuleBehaviour ModuleAssociated => moduleAssociated;
 
+    public Transform RangePoint => rangePoint;
+    public Transform BulletPoint => bulletPoint;
+
+    public GameObject BulletPrefab => bulletPrefab;
+
 
     #endregion
 
@@ -169,16 +174,6 @@ public class Enemy : InteractibleObject
             GameCore.Instance.Player.canMove = false;
 
             anim.SetTrigger("Attack");
-
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.transform.SetParent(bulletPoint);
-            bullet.transform.localPosition = Vector3.zero;
-            bullet.transform.rotation = Quaternion.identity;
-
-            bullet.GetComponent<BulletEnemy>().Graphics.transform.localEulerAngles = transform.localEulerAngles;
-
-            Vector3 direction = rangePoint.TransformDirection(Vector3.forward);
-            bullet.GetComponent<BulletEnemy>().direction = direction;
 
             return true;
         }

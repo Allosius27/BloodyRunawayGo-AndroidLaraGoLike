@@ -187,7 +187,8 @@ public class ModuleBehaviour : GameplayElement
         if (isLighting)
         {
             StartCoroutine(playerLightBurnFeedbackData.CoroutineExecute(this.gameObject));
-            GameCore.Instance.GameOver();
+            GameCore.Instance.Player.PlayerDeath();
+            //GameCore.Instance.GameOver();
         }
 
         GameCore.Instance.UpdateEnemiesBehaviour();

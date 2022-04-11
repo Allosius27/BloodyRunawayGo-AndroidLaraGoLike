@@ -89,12 +89,15 @@ public class GameCore : AllosiusDev.Singleton<GameCore>
 
     public void UpdateEnemiesBehaviour()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        if (gameEnd == false)
         {
-            bool enemyTarget = enemies[i].UpdateEnemyBehaviour();
-            if (enemyTarget == false)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                enemies[i].CheckPlayerCanAttack();
+                bool enemyTarget = enemies[i].UpdateEnemyBehaviour();
+                if (enemyTarget == false)
+                {
+                    enemies[i].CheckPlayerCanAttack();
+                }
             }
         }
     }

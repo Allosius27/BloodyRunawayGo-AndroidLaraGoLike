@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Sfx_PlayerDeath AudioData
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4087aecdc51aa3c43bb682f039ce7666, type: 3}
     parameters:
       typeSound: 0
-      volume: 0.29
+      volume: 0.42
       volume3d: 0.37
       pitch: 1
       loop: 0
