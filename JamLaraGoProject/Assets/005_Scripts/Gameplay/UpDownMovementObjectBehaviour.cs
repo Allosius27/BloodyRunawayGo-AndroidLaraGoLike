@@ -9,8 +9,8 @@ public class UpDownMovementObjectBehaviour : MonoBehaviour
 {
     #region Fields
 
-    private RectTransform _upArrowSprite = null;
-    private RectTransform _downArrowSprite = null;
+    [SerializeField] private RectTransform _upArrowSprite = null;
+    [SerializeField] private RectTransform _downArrowSprite = null;
     
     private TMP_Text _upMovementCostText = null;
 
@@ -32,8 +32,8 @@ public class UpDownMovementObjectBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        _upArrowSprite = GameCanvasManager.Instance.UpArrowSprite;
-        _downArrowSprite = GameCanvasManager.Instance.DownArrowSprite;
+        // _upArrowSprite = GameCanvasManager.Instance.UpArrowSprite;
+        // _downArrowSprite = GameCanvasManager.Instance.DownArrowSprite;
 
         _upMovementCostText = _upArrowSprite.GetComponentInChildren<TMP_Text>();
         _upMovementCostText.text = _upMovementsCost.ToString();
