@@ -66,7 +66,7 @@ public class CrackedSlab : ModuleBehaviour
     {
         base.CheckCurrentPlayerModule(playerModule);
 
-        if (currentDamage >= maxDurability)
+        if (playerModule == this && currentDamage >= maxDurability)
         {
             currentDamage = maxDurability;
 
