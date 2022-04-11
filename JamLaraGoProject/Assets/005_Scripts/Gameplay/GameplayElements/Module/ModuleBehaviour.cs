@@ -67,6 +67,8 @@ public class ModuleBehaviour : GameplayElement
         _meshSize = this.transform.GetChild(0).localScale.x;
 
         SetAnchorPos();
+
+        RegisterNeighbors();
     }
 
     public void SetAnchorPos()
@@ -82,7 +84,7 @@ public class ModuleBehaviour : GameplayElement
 
     public virtual void Start()
     {
-        RegisterNeighbors();
+        
 
         //GetIsLastModule();
     }
