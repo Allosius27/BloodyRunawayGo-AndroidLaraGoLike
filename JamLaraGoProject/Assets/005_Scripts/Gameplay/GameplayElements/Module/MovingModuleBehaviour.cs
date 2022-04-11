@@ -148,6 +148,7 @@ public class MovingModuleBehaviour : ModuleBehaviour
         {
             if (_neighbors[i] != null)
             {
+                Debug.Log(_neighbors[i].name);
                 _neighbors[i].RegisterNeighbors();
             }
         }

@@ -130,7 +130,7 @@ public class ModuleBehaviour : GameplayElement
         {
             Ray ray = new Ray(pos, dir[i]);
 
-            if (Physics.Raycast(ray, out hit, 1f, modulesLayerMask))
+            if (Physics.Raycast(ray, out hit, 1.2f, modulesLayerMask))
             {
                 ModuleBehaviour moduleBehaviour = hit.collider.gameObject.GetComponent<ModuleBehaviour>();
                 MovingModuleBehaviour movingModuleBehaviour = hit.collider.gameObject.GetComponent<MovingModuleBehaviour>();
