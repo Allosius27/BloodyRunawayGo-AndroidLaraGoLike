@@ -135,11 +135,14 @@ public class MovingModuleBehaviour : ModuleBehaviour
             }
 
             GameCore.Instance.UpdateEnemiesBehaviour();
+
+            CheckCurrentNeighbors();
         }
     }
 
     private void CheckCurrentNeighbors()
     {
+        Debug.Log("CheckCurrentNeighbors");
         RegisterNeighbors();
         for (int i = 0; i < _neighbors.Count; i++)
         {

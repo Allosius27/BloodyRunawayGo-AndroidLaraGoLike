@@ -46,7 +46,7 @@ public class SelectLevelPanel : MonoBehaviour
 
     #region Behaviour
 
-    private void Start()
+    public void Init()
     {
         for (int i = 0; i < unlockLevels.Count; i++)
         {
