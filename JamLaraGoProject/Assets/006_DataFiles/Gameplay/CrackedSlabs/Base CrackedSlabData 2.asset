@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statesMeshes:
   - {fileID: -5053925668127403250, guid: 3884ebfdcd5d17648b65387ef00b671b, type: 3}
-  - {fileID: -1550514412580984892, guid: 0d66f060271930848aa8d6a8c568a142, type: 3}
   - {fileID: 2212009239438826721, guid: dbee307e4258c8446b7daf9c27ba3e1a, type: 3}
+  - {fileID: -1550514412580984892, guid: 0d66f060271930848aa8d6a8c568a142, type: 3}
   - {fileID: -153830957423991239, guid: 1ec925edbd70a504e874aa87b6f7da24, type: 3}
