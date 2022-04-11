@@ -11,6 +11,8 @@ public class Enemy : InteractibleObject
 
     private Vector3 m_DetectorOffset = Vector3.zero;
 
+    private BatMovement batMovement;
+
     #endregion
 
     #region Properties
@@ -22,7 +24,6 @@ public class Enemy : InteractibleObject
 
     public ModuleBehaviour ModuleAssociated => moduleAssociated;
 
-    public BatMovement batMovement;
 
     #endregion
 
@@ -52,6 +53,8 @@ public class Enemy : InteractibleObject
     {
         canAttack = this;
         canDied = this;
+
+        batMovement = GameCore.Instance.Player.GetComponent<BatMovement>();
 
         GetCurrentModule();
 

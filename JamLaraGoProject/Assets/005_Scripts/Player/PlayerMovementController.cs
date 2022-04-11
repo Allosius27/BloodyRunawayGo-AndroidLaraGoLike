@@ -459,6 +459,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDamage()
     {
+        Debug.Log("Player Death");
+
         StartCoroutine(playerTakeDamageFeedbackData.CoroutineExecute(this.gameObject));
         StartCoroutine(playerDeathFeedbackData.CoroutineExecute(this.gameObject));
 
