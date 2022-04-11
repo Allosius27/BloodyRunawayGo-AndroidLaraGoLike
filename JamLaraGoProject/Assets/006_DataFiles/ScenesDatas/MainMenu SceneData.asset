@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 1
   sceneName: Menu principal
-  sceneImg: {fileID: 0}
+  sceneImg: {fileID: 21300000, guid: 4f370a2b881d16c44bf48659a1b4ff83, type: 3}

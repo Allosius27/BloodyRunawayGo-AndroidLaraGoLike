@@ -30,6 +30,8 @@ public class SceneLoader : AllosiusDev.Singleton<SceneLoader>
         Debug.Log("ActiveLoadingScreen !");
 
         _loadingScreen = Instantiate(loadingScreen, transform.position, transform.rotation);
+        _loadingScreen.loadingSceneName.text = _sceneData.sceneName;
+        _loadingScreen.loadingImage.sprite = _sceneData.sceneImg;
         var _gui = GameObject.FindGameObjectWithTag("GUI");
         if (_gui != null)
         {

@@ -6,7 +6,13 @@ using DuloGames.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    //public Slider slider;
+    #region UnityInspector
+
     public UIProgressBar uiProgressBar;
     public Text progressText;
+
+    public Image loadingImage;
+    public Text loadingSceneName;
+
+    #endregion
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameLevel_02 SceneData
   m_EditorClassIdentifier: 
   sceneToLoad: 3
-  sceneName: Level 2
+  sceneName: Bloody Runaway Go - Tutoriel 02
   sceneImg: {fileID: 21300000, guid: e68fe897ec9d5ea49aeb29963c1a6bee, type: 3}
