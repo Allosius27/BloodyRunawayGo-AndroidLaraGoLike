@@ -110,9 +110,7 @@ public class PlayerMovementController : MonoBehaviour
 
 #if UNITY_ANDROID
         GetMobileInputs();
-#endif
-
-#if UNITY_EDITOR
+#else
         GetKeyboardInputs();
 #endif
 

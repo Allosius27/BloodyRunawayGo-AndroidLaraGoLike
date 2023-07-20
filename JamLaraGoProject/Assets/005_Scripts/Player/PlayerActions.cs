@@ -44,9 +44,7 @@ public class PlayerActions : MonoBehaviour
             }
             
         }
-#endif
-
-#if UNITY_EDITOR
+#else
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("PC Raycast Hits");
